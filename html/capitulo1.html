@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- El título se establecerá desde JavaScript -->
+<title>Crónicas Fiscales</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="../css/capitulo.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="../css/dark-mode.css">
+<script src="../js/theme.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<button id="configBtn" class="config-btn">Configuración</button>
+
+<div class="game-container">
+    
+    <!-- 1. BARRA SUPERIOR (HUD) -->
+    <div id="barraSuperior" class="oculto" style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="hud-top" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div id="nivelInfo">Cargando...</div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <div id="vidas" style="color: #ff4757; font-size: 1.2rem; display: flex; gap: 5px; margin-right: 15px;"></div>
+                <button id="musicButton" class="music-button">Música</button>
+                <button id="exitButton" class="exit-button" onclick="window.location.href='../introduccion.html'">Salir</button>
+            </div>
+        </div>
+        <div class="hud-bottom" style="display: flex; align-items: center; width: 100%; gap: 15px;">
+            <div class="progress-container" style="flex-grow: 1; margin: 0;">
+                <div class="progress-bar" id="nivelProgreso"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DIÃLOGO -->
+    <div id="dialogo">
+        <div class="avatar">
+            <img id="avatarImg" src="https://placehold.co/160x160/eee/333?text=Avatar" alt="Avatar">
+        </div>
+        <div class="burbuja" onclick="siguienteDialogo()">
+            <div class="nombre" id="nombrePersonaje"></div>
+            <div id="textoDialogo"></div>
+        </div>
+    </div>
+    
+    <!-- 3. JUEGO (PREGUNTAS) -->
+    <div id="juego" class="oculto">
+        <h2 id="pregunta">Cargando pregunta...</h2>
+        <div class="opciones">
+        <!-- Opciones generadas por JS -->
+        </div>
+    </div>
+    
+    <!-- 4. MODAL DE FEEDBACK (Oculto, se usará para Game Over y Retroalimentación) -->
+    <div id="mensaje" class="oculto">
+        <div id="mensajeContenido">
+            <p id="mensajeTexto"></p>
+            <button id="mensajeBotonPrincipal">Aceptar</button>
+        </div>
+    </div>
+    
+    <!-- 5. PANTALLA DE VICTORIA (generada por JS) -->
+
+</div>
+
+<!-- Elemento de Audio -->
+<audio id="backgroundMusic" loop>
+    <source src="../assets/Audio.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Scripts de Firebase -->
+<script type="module" src="../js/capitulo1.js?v=2"></script>
+</body>
+</html>
+
+

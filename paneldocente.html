@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel del Docente - Crónicas Fiscales</title>
+<!-- Librerías CDN --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- jsPDF y autoTable con versiones compatibles -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<!-- Fuentes de Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<!-- CSS del Panel Docente -->
+<link rel="stylesheet" href="css/panel-docente.css">
+<link rel="stylesheet" href="css/dark-mode.css">
+<script src="js/theme.js"></script>
+</head>
+<body>
+<button id="configBtn" class="config-btn">Configuración</button>
+<div class="container">
+    <a href="inicio.html" class="back-button">
+        ← Volver a la Portada
+    </a>
+    
+    <h1>Panel del Docente</h1>
+
+    <!-- Botones de Acción --><div class="panel-botones">
+        <button id="btnReporte" class="panel-btn primario">
+            <span></span> Generar Reporte PDF
+        </button>
+        <button id="btnEliminar" class="panel-btn eliminar">
+            Eliminar Todos los Registros
+        </button>
+        <button id="btnGestionPreguntas" class="panel-btn primario">
+            <span></span> Gestionar Preguntas
+        </button>
+    </div>
+    
+    <!-- Tabla de Jugadores -->
+    <div id="seccion-jugadores">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr id="tabla-cabecera-tr">
+                        <th>Nombre</th>
+                        <th class="centered-text">Nivel Comp.</th>
+                        <th class="centered-text">Puntaje Total</th>
+                        <th>Detalles</th> </tr>
+                </thead>
+                <tbody id="tabla-jugadores-body">
+                    <!-- Los datos se insertarán aquíí --></tbody>
+            </table>
+        </div>
+        
+        <p id="loadingMessage" class="loading-message">Cargando datos de jugadores...</p>
+    </div>
+
+    <!-- Sección de Gestión de Preguntas (Inicialmente oculta) -->
+    <div id="seccion-preguntas" class="oculto">
+        <h2 style="text-align: center; color: var(--primary-color); margin: 20px 0;">📝 Gestión de Preguntas por Nivel</h2>
+        
+        <!-- Selector de Nivel -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <label for="selector-nivel" style="font-weight: 600; margin-right: 10px;">Seleccionar Nivel:</label>
+            <select id="selector-nivel" style="padding: 8px 15px; border: 2px solid var(--primary-color); border-radius: 10px; font-size: 1rem;">
+                <option value="">-- Selecciona un nivel --</option>
+                <option value="1">Nivel 1: La Amenaza del Fisco</option>
+                <option value="2">Nivel 2: La travesía del IVA perdido</option>
+                <option value="3">Nivel 3: El Misterio de las Deducciones</option>
+                <option value="4">Nivel 4: La Batalla de los Impuestos</option>
+                <option value="5">Nivel 5: El Laberinto de la Nómina</option>
+                <option value="6">Nivel 6: Los Secretos del CFDI</option>
+                <option value="7">Nivel 7: La Conspiración Contable</option>
+                <option value="8">Nivel 8: El Último Recurso Fiscal</option>
+                <option value="9">Nivel 9: La Victoria Final</option>
+            </select>
+            <button id="btn-cargar-preguntas" class="panel-btn primario" style="margin-left: 15px;">Cargar Preguntas</button>
+        </div>
+
+        <!-- Botones de Acciones de Preguntas -->
+        <div class="panel-botones" id="botones-preguntas" style="justify-content: center; display: none;">
+            <button id="btn-nueva-pregunta" class="panel-btn primario">
+                <span></span> Nueva Pregunta
+            </button>
+            <button id="btn-guardar-cambios" class="panel-btn primario">
+                <span></span> Guardar Cambios
+            </button>
+        </div>
+
+        <!-- Lista de Preguntas -->
+        <div id="lista-preguntas" class="preguntas-container">
+            <!-- Las preguntas se cargarán aquíí dinámicamente -->
+        </div>
+
+        <!-- Modal para Editar/Crear Pregunta -->
+        <div id="modal-pregunta" class="modal-pregunta oculto">
+            <div class="modal-contenido-pregunta">
+                <h3 id="modal-titulo">Editar Pregunta</h3>
+                
+                <label>Texto de la Pregunta:</label>
+                <textarea id="input-pregunta" rows="3" placeholder="Escribe la pregunta aquíí..."></textarea>
+                
+                <label>Opciones de Respuesta:</label>
+                <input type="text" id="input-opcion-0" placeholder="Opción A" />
+                <input type="text" id="input-opcion-1" placeholder="Opción B" />
+                <input type="text" id="input-opcion-2" placeholder="Opción C" />
+                <input type="text" id="input-opcion-3" placeholder="Opción D" />
+                
+                <label>Respuesta Correcta:</label>
+                <select id="input-respuesta-correcta">
+                    <option value="0">Opción A</option>
+                    <option value="1">Opción B</option>
+                    <option value="2">Opción C</option>
+                    <option value="3">Opción D</option>
+                </select>
+                
+                <label>Feedback para cada opción:</label>
+                <textarea id="input-feedback-0" rows="2" placeholder="Feedback para Opción A"></textarea>
+                <textarea id="input-feedback-1" rows="2" placeholder="Feedback para Opción B"></textarea>
+                <textarea id="input-feedback-2" rows="2" placeholder="Feedback para Opción C"></textarea>
+                <textarea id="input-feedback-3" rows="2" placeholder="Feedback para Opción D"></textarea>
+                
+                <div class="modal-botones">
+                    <button id="btn-guardar-pregunta" class="panel-btn primario">Guardar</button>
+                    <button id="btn-cancelar-pregunta" class="panel-btn eliminar">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts locales (sin Firebase) -->
+<script>
+    // ============================================================
+    // paneldocente.html — Sin Firebase, 100% local (XAMPP)
+    // ============================================================
+    const API_BASE = './api';
+    const TOTAL_NIVELES = 9;
+
+    const tbodyEl    = document.getElementById("tabla-jugadores-body");
+    const loadingEl  = document.getElementById("loadingMessage");
+
+    let listaJugadoresActual = [];
+    let pollingInterval = null;
+
+    // ===============================
+    // === PANEL DE JUGADORES ===
+    // ===============================
+
+    async function cargarJugadores() {
+        try {
+            const res = await fetch(`${API_BASE}/get_jugadores.php`);
+            const jugadores = await res.json();
+
+            if (!Array.isArray(jugadores) || jugadores.length === 0) {
+                loadingEl.textContent = "Aún no hay jugadores registrados.";
+                loadingEl.style.display = 'block';
+                tbodyEl.innerHTML = '';
+                listaJugadoresActual = [];
+                return;
+            }
+
+            listaJugadoresActual = jugadores;
+            loadingEl.style.display = 'none';
+            actualizarTabla(listaJugadoresActual);
+
+        } catch (error) {
+            console.error("Error al cargar jugadores:", error);
+            loadingEl.textContent = "Error al conectar con la base de datos local.";
+            loadingEl.style.display = 'block';
+        }
+    }
+
+    function conectarAPanel() {
+        cargarJugadores();
+        // Refresca cada 10 segundos (simula onSnapshot)
+        pollingInterval = setInterval(cargarJugadores, 10000);
+
+        document.getElementById('btnReporte').onclick = generarPDF;
+        document.getElementById('btnEliminar').onclick = confirmarEliminacion;
+
+        tbodyEl.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-ver-detalles')) {
+                mostrarDesglose(e.target.dataset.id);
+            }
+        });
+
+        document.getElementById('btnGestionPreguntas').onclick = mostrarSeccionPreguntas;
+    }
+
+    function actualizarTabla(jugadores) {
+        tbodyEl.innerHTML = '';
+        jugadores.sort((a, b) => (b.puntaje || 0) - (a.puntaje || 0));
+        jugadores.forEach(jugador => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${jugador.nombre || "Jugador Anónimo"}</td>
+                <td class="centered-text">${jugador.nivel || 0}</td>
+                <td class="centered-text">${jugador.puntaje || 0}</td>
+                <td><button class="btn-ver-detalles" data-id="${jugador.id}">Ver Detalles</button></td>
+            `;
+            tbodyEl.appendChild(tr);
+        });
+    }
+
+    function mostrarDesglose(jugadorId) {
+        const jugador = listaJugadoresActual.find(j => j.id === jugadorId);
+        if (!jugador) return;
+        const nivelCompletado = jugador.nivel || 0;
+        const puntajeTotal    = jugador.puntaje || 0;
+        let htmlContent = `<div style="text-align:left;max-height:250px;overflow-y:auto;padding-right:15px;">`;
+        if (nivelCompletado === 0) {
+            htmlContent += "<p>Este jugador an no ha completado ningún nivel.</p>";
+        } else {
+            htmlContent += '<ul style="list-style-type:none;padding:0;">';
+            for (let i = 1; i <= TOTAL_NIVELES; i++) {
+                const completado = i <= nivelCompletado;
+                const color = completado ? 'var(--primary-color)' : '#999';
+                const texto = completado ? (i === nivelCompletado ? `${puntajeTotal} pts` : 'Completado') : 'No jugado';
+                htmlContent += `<li style="padding:6px 0;border-bottom:1px dashed #eee;display:flex;justify-content:space-between;">
+                    <strong>Nivel ${i}:</strong>
+                    <span style="font-weight:700;color:${color};">${texto}</span>
+                </li>`;
+            }
+            htmlContent += '</ul>';
+        }
+        htmlContent += `<p style="margin-top:15px;text-align:right;font-weight:700;">
+            Nivel Actual: <span style="font-size:1.2rem;color:var(--primary-color);">${nivelCompletado}</span><br>
+            Puntaje: <span style="font-size:1.2rem;color:var(--primary-color);">${puntajeTotal}</span>
+        </p></div>`;
+        Swal.fire({ title: `Desglose: <span style="color:var(--primary-color);">${jugador.nombre}</span>`, html: htmlContent, icon: 'info', confirmButtonColor: 'var(--primary-color)' });
+    }
+
+    function generarPDF() {
+        if (listaJugadoresActual.length === 0) { Swal.fire('¡Ups!', 'No hay jugadores para el reporte.', 'info'); return; }
+        try {
+            if (typeof window.jspdf === 'undefined') { Swal.fire('Error', 'Librería PDF no disponible.', 'error'); return; }
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            doc.setFontSize(18); doc.text("Reporte de Progreso - Crónicas Fiscales", 15, 20);
+            doc.setFontSize(11); doc.text(`Generado: ${new Date().toLocaleString()}`, 15, 28);
+            doc.text(`Total estudiantes: ${listaJugadoresActual.length}`, 15, 35);
+            const head = [['Nombre', 'Nivel Completado', 'Puntaje Total', 'Precisión %']];
+            const body = listaJugadoresActual.map(j => [j.nombre || "N/A", j.nivel || 0, j.puntaje || 0, `${j.precision || 0}%`]);
+            if (typeof doc.autoTable === 'function') {
+                doc.autoTable({ startY: 45, head, body, theme: 'striped', headStyles: { fillColor: [231, 111, 81], textColor: 255, fontSize: 12, fontStyle: 'bold' }, styles: { fontSize: 10, cellPadding: 3, halign: 'center' }, columnStyles: { 0: { cellWidth: 60, halign: 'left' }, 1: { cellWidth: 30 }, 2: { cellWidth: 35 }, 3: { cellWidth: 30 } } });
+            }
+            doc.save('reporte_jugadores_cronicas_fiscales.pdf');
+            Swal.fire({ title: '¡Éxito!', text: 'Reporte PDF generado.', icon: 'success', timer: 2000, showConfirmButton: false });
+        } catch (error) { Swal.fire('Error al generar PDF', error.message, 'error'); }
+    }
+
+    function confirmarEliminacion() {
+        if (listaJugadoresActual.length === 0) { Swal.fire('¡Ups!', 'No hay registros para eliminar.', 'info'); return; }
+        Swal.fire({ title: '¿Estás absolutamente seguro?', text: `Esto eliminará ${listaJugadoresActual.length} registros. ¡No se puede deshacer!`, icon: 'warning', showCancelButton: true, confirmButtonColor: 'var(--danger-color)', cancelButtonColor: 'var(--secondary-color)', confirmButtonText: 'Sí, ¡eliminar todo!', cancelButtonText: 'Cancelar' })
+            .then(result => { if (result.isConfirmed) eliminarTodosLosRegistros(); });
+    }
+
+    async function eliminarTodosLosRegistros() {
+        Swal.fire({ title: 'Eliminando...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        try {
+            const res = await fetch(`${API_BASE}/eliminar_jugadores.php`, { method: 'POST' });
+            const data = await res.json();
+            if (data.ok) { Swal.fire('¡¡Eliminados!', 'Todos los registros han sido borrados.', 'success'); cargarJugadores(); }
+            else throw new Error(data.error);
+        } catch (error) { Swal.fire('Error', 'No se pudieron eliminar los registros.', 'error'); }
+    }
+
+    // ===============================
+    // === GESTIÓN DE PREGUNTAS ===
+    // ===============================
+
+    let nivelActual = null;
+    let preguntasActuales = [];
+    let preguntaEditandoIndex = null;
+
+    function mostrarSeccionPreguntas() {
+        // Detener polling mientras se editan preguntas
+        clearInterval(pollingInterval);
+
+        document.getElementById('seccion-jugadores').classList.add('oculto');
+        document.getElementById('seccion-preguntas').classList.remove('oculto');
+
+        document.getElementById('btn-cargar-preguntas').onclick = cargarPreguntasNivel;
+        document.getElementById('btn-nueva-pregunta').onclick = () => abrirModalPregunta();
+        document.getElementById('btn-guardar-cambios').onclick = guardarCambiosNivel;
+        document.getElementById('btn-guardar-pregunta').onclick = guardarPreguntaModal;
+        document.getElementById('btn-cancelar-pregunta').onclick = cerrarModalPregunta;
+
+        document.getElementById('modal-pregunta').onclick = (e) => { if (e.target.id === 'modal-pregunta') cerrarModalPregunta(); };
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !document.getElementById('modal-pregunta').classList.contains('oculto')) cerrarModalPregunta(); });
+
+        const backButton = document.querySelector('.back-button');
+        backButton.onclick = () => {
+            document.getElementById('seccion-preguntas').classList.add('oculto');
+            document.getElementById('seccion-jugadores').classList.remove('oculto');
+            backButton.onclick = () => window.location.href = "inicio.html";
+            // Reanudar polling
+            cargarJugadores();
+            pollingInterval = setInterval(cargarJugadores, 10000);
+        };
+    }
+
+    async function cargarPreguntasNivel() {
+        const selector = document.getElementById('selector-nivel');
+        nivelActual = selector.value;
+        if (!nivelActual) { Swal.fire('Ups!', 'Por favor selecciona un nivel', 'warning'); return; }
+
+        Swal.fire({ title: 'Cargando...', text: `Obteniendo preguntas del Nivel ${nivelActual}`, allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+        try {
+            const res = await fetch(`${API_BASE}/get_preguntas.php?nivel=${nivelActual}`);
+            const data = await res.json();
+            preguntasActuales = Array.isArray(data) ? data : [];
+            preguntasActuales.sort((a, b) => (a.orden || 0) - (b.orden || 0));
+            Swal.close();
+            mostrarPreguntasCargadas();
+        } catch (error) {
+            Swal.fire('Error', `No se pudieron cargar las preguntas: ${error.message}`, 'error');
+        }
+    }
+
+    function mostrarPreguntasCargadas() {
+        const container = document.getElementById('lista-preguntas');
+        const botonesPanel = document.getElementById('botones-preguntas');
+        if (preguntasActuales.length === 0) {
+            container.innerHTML = `<div style="text-align:center;padding:40px;"><h3>No hay preguntas en este nivel</h3><p>¡Comienza creando la primera pregunta!</p></div>`;
+        } else {
+            container.innerHTML = preguntasActuales.map((p, index) => `
+                <div class="pregunta-item">
+                    <div class="pregunta-header">
+                        <div class="pregunta-texto">${p.pregunta || 'Sin texto'}</div>
+                        <div class="pregunta-botones">
+                            <button class="btn-editar" onclick="editarPregunta(${index})"> Editar</button>
+                            <button class="btn-eliminar-pregunta" onclick="eliminarPregunta(${index})">Eliminar</button>
+                        </div>
+                    </div>
+                    <div class="opciones-lista">
+                        ${(p.opciones || []).map((opcion, i) => `
+                            <div class="opcion-item ${i === p.respuesta ? 'opcion-correcta' : ''}">
+                                ${String.fromCharCode(65 + i)}. ${opcion}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+        botonesPanel.style.display = 'flex';
+    }
+
+    function abrirModalPregunta(index = null) {
+        preguntaEditandoIndex = index;
+        const modal = document.getElementById('modal-pregunta');
+        const titulo = document.getElementById('modal-titulo');
+        if (index !== null) {
+            titulo.textContent = `Editar Pregunta ${index + 1}`;
+            const p = preguntasActuales[index];
+            document.getElementById('input-pregunta').value       = p.pregunta || '';
+            document.getElementById('input-opcion-0').value       = p.opciones?.[0] || '';
+            document.getElementById('input-opcion-1').value       = p.opciones?.[1] || '';
+            document.getElementById('input-opcion-2').value       = p.opciones?.[2] || '';
+            document.getElementById('input-opcion-3').value       = p.opciones?.[3] || '';
+            document.getElementById('input-respuesta-correcta').value = p.respuesta || 0;
+            document.getElementById('input-feedback-0').value     = p.feedback?.[0] || '';
+            document.getElementById('input-feedback-1').value     = p.feedback?.[1] || '';
+            document.getElementById('input-feedback-2').value     = p.feedback?.[2] || '';
+            document.getElementById('input-feedback-3').value     = p.feedback?.[3] || '';
+        } else {
+            titulo.textContent = 'Nueva Pregunta';
+            ['input-pregunta','input-opcion-0','input-opcion-1','input-opcion-2','input-opcion-3','input-feedback-0','input-feedback-1','input-feedback-2','input-feedback-3'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('input-respuesta-correcta').value = '0';
+        }
+        modal.classList.remove('oculto');
+    }
+
+    function cerrarModalPregunta() {
+        document.getElementById('modal-pregunta').classList.add('oculto');
+        preguntaEditandoIndex = null;
+    }
+
+    async function guardarPreguntaModal() {
+        const pregunta = document.getElementById('input-pregunta').value.trim();
+        const opciones = [0,1,2,3].map(i => document.getElementById(`input-opcion-${i}`).value.trim());
+        const respuesta = parseInt(document.getElementById('input-respuesta-correcta').value);
+        const feedback  = [0,1,2,3].map(i => document.getElementById(`input-feedback-${i}`).value.trim());
+
+        if (!pregunta) { Swal.fire('Error', 'La pregunta no puede estar vacía', 'error'); return; }
+        if (opciones.some(opt => !opt)) { Swal.fire('Error', 'Todas las opciones deben tener texto', 'error'); return; }
+
+        const nuevaPregunta = {
+            pregunta, opciones, respuesta, feedback,
+            orden: preguntaEditandoIndex !== null ? preguntasActuales[preguntaEditandoIndex].orden : preguntasActuales.length + 1,
+            fechaModificacion: new Date().toISOString(), activa: true
+        };
+
+        if (preguntaEditandoIndex !== null) {
+            preguntasActuales[preguntaEditandoIndex] = { ...preguntasActuales[preguntaEditandoIndex], ...nuevaPregunta };
+        } else {
+            preguntasActuales.push({ id: `pregunta_${preguntasActuales.length + 1}`, ...nuevaPregunta });
+        }
+
+        cerrarModalPregunta();
+        mostrarPreguntasCargadas();
+        Swal.fire({ title: 'Pregunta guardada', text: 'Recuerda hacer clic en "Guardar Cambios" para aplicar los cambios', icon: 'success', timer: 3000 });
+    }
+
+    async function guardarCambiosNivel() {
+        if (!nivelActual || preguntasActuales.length === 0) { Swal.fire('Error', 'No hay cambios para guardar', 'warning'); return; }
+        Swal.fire({ title: 'Guardando cambios...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        try {
+            const res = await fetch(`${API_BASE}/guardar_preguntas.php`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nivel: parseInt(nivelActual), preguntas: preguntasActuales.map((p, i) => ({ ...p, orden: i + 1 })) })
+            });
+            const data = await res.json();
+            if (data.ok) Swal.fire('¡Éxito!', `${data.total} preguntas guardadas correctamente`, 'success');
+            else throw new Error(data.error);
+        } catch (error) { Swal.fire('Error', `No se pudieron guardar: ${error.message}`, 'error'); }
+    }
+
+    function eliminarPregunta(index) {
+        Swal.fire({ title: '¿Eliminar pregunta?', text: 'Esta acción no se puede deshacer', icon: 'warning', showCancelButton: true, confirmButtonColor: 'var(--danger-color)', cancelButtonColor: 'var(--secondary-color)', confirmButtonText: 'Sí, eliminar', cancelButtonText: 'Cancelar' })
+            .then(result => {
+                if (result.isConfirmed) {
+                    preguntasActuales.splice(index, 1);
+                    mostrarPreguntasCargadas();
+                    Swal.fire('Eliminada', 'Recuerda guardar los cambios.', 'success');
+                }
+            });
+    }
+
+    window.editarPregunta   = (index) => abrirModalPregunta(index);
+    window.eliminarPregunta = eliminarPregunta;
+
+    // --- Iniciar ---
+    conectarAPanel();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Docente - Crónicas Fiscales</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/dashboard.css?v=2">
+<link rel="stylesheet" href="css/dark-mode.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="js/theme.js?v=3"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="dash-wrap">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-logo">Crónicas Fiscales <span>Panel del Docente</span></div>
+    <div class="topbar-right">
+      <button class="tb-btn" id="perfilBtn">Mi cuenta</button>
+      <button class="tb-btn danger" id="logoutBtn">Salir</button>
+    </div>
+  </header>
+
+  <div class="dash-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="user-pill">
+        <div class="avatar"></div>
+        <div class="uname" id="userName">Cargando...</div>
+        <div class="uemail" id="userEmail"></div>
+        <div class="urole">Docente</div>
+      </div>
+      <button class="nav-item active" data-section="inicio"><span class="icon"></span> Inicio</button>
+      <button class="nav-item" data-section="alumnos"><span class="icon"></span> Mis Alumnos</button>
+      <button class="nav-item" data-section="clases"><span class="icon"></span> Mis Clases</button>
+      <button class="nav-item" data-section="ranking"><span class="icon">🏆</span> Ranking de Clase</button>
+      <button class="nav-item" data-section="reportes"><span class="icon"></span> Reportes</button>
+      <button class="nav-item" data-section="preguntas"><span class="icon"><i class="fas fa-pencil-alt"></i> </span> Preguntas</button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- ── INICIO ── -->
+      <section id="inicio" class="section active">
+        <h2 class="section-title">Panel del Docente</h2>
+        <div class="stats-row">
+          <div class="stat-card"><span class="stat-icon"></span><div><div class="stat-label">Mis alumnos</div><div class="stat-value" id="stAlumnos">—</div></div></div>
+          <div class="stat-card yellow"><span class="stat-icon"></span><div><div class="stat-label">Mis clases</div><div class="stat-value" id="stClases">—</div></div></div>
+          <div class="stat-card green"><span class="stat-icon"></span><div><div class="stat-label">Mayor puntaje</div><div class="stat-value" id="stTop">—</div></div></div>
+          <div class="stat-card blue"><span class="stat-icon"></span><div><div class="stat-label">Nivel promedio</div><div class="stat-value" id="stProm">—</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Top 5 Alumnos</div>
+          <div class="table-wrap"><table id="topTable">
+            <thead><tr><th>#</th><th>Alumno</th><th class="centered">Nivel</th><th class="centered">Puntaje</th><th class="centered">Precisión</th></tr></thead>
+            <tbody id="topBody"><tr><td colspan="5" class="loading-msg">Cargando...</td></tr></tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <!-- ── ALUMNOS ── -->
+      <section id="alumnos" class="section">
+        <h2 class="section-title">Mis Alumnos</h2>
+        <div class="action-bar">
+          <button class="btn btn-success" id="btnNuevoAlumno"><i class="fas fa-plus"></i> Nuevo alumno</button>
+          <button class="btn btn-info"    id="btnAsignarAlumno">🔗 Asignar alumno existente</button>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Nombre</th><th>Email</th><th>Clase</th><th class="centered">Nivel</th><th class="centered">Puntaje</th><th>Acción</th></tr></thead>
+          <tbody id="alumnosBody"><tr><td colspan="6" class="loading-msg">Cargando...</td></tr></tbody>
+        </table></div>
+      </section>
+
+      <!-- ── CLASES ── -->
+      <section id="clases" class="section">
+        <h2 class="section-title">Mis Clases</h2>
+        <div class="action-bar">
+          <button class="btn btn-success" id="btnNuevaClase"><i class="fas fa-plus"></i> Nueva clase</button>
+        </div>
+        <div id="clasesGrid" class="loading-msg">Cargando...</div>
+      </section>
+
+      <!-- ── REPORTES ── -->
+      <section id="reportes" class="section">
+        <h2 class="section-title">Reportes</h2>
+        <div class="action-bar" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+          <select id="filtroClaseReporte" class="fg" style="min-width:200px; padding:8px 12px; border:2px solid var(--accent); border-radius:8px;">
+            <option value="">— Todos los alumnos —</option>
+          </select>
+          <button class="btn btn-primary" id="btnPDF"><i class="fas fa-file-pdf"></i> Generar PDF</button>
+          <button class="btn btn-accent"  id="btnRefresh"><i class="fas fa-sync-alt"></i> Actualizar</button>
+        </div>
+        <div class="card"><div class="card-title">📋 Progreso de todos mis alumnos</div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Alumno</th><th>Clase</th><th class="centered">Nivel</th><th class="centered">Puntaje</th><th class="centered">Precisión</th><th>Última act.</th><th>Detalles</th></tr></thead>
+            <tbody id="reporteBody"><tr><td colspan="7" class="loading-msg">Cargando...</td></tr></tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <!-- ── PREGUNTAS ── -->
+      <section id="preguntas" class="section">
+        <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Gestión de Preguntas</h2>
+        <div class="card">
+          <div class="card-title">Selecciona un nivel</div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px;">
+            <select id="selNivel" class="fg" style="min-width:260px;padding:10px 14px;border:2px solid var(--accent);border-radius:10px;font-size:14px;">
+              <option value="">— Selecciona un nivel —</option>
+              <option value="1">Nivel 1: La Amenaza del Fisco</option>
+              <option value="2">Nivel 2: La Travesía del IVA Perdido</option>
+              <option value="3">Nivel 3: El Misterio de las Deducciones</option>
+              <option value="4">Nivel 4: La Batalla de los Impuestos</option>
+              <option value="5">Nivel 5: El Laberinto de la Nómina</option>
+              <option value="6">Nivel 6: Los Secretos del CFDI</option>
+              <option value="7">Nivel 7: La Conspiración Contable</option>
+              <option value="8">Nivel 8: El Último Recurso Fiscal</option>
+              <option value="9">Nivel 9: La Victoria Final</option>
+            </select>
+            <button class="btn btn-primary" id="btnCargarPreguntas">Cargar</button>
+          </div>
+          <div id="botonesPreguntas" style="display:none;" class="action-bar">
+            <button class="btn btn-success" id="btnNuevaPregunta"><i class="fas fa-plus"></i> Nueva pregunta</button>
+            <button class="btn btn-info"    id="btnGuardarCambios"><i class="fas fa-save"></i> Guardar cambios</button>
+          </div>
+          <div id="listaPreguntas"></div>
+        </div>
+      </section>
+
+      <!-- ── RANKING ── -->
+      <section id="ranking" class="section">
+        <h2 class="section-title">Ranking de Clase</h2>
+        <div class="action-bar">
+          <select id="rankingClaseSelect" class="swal2-input" style="max-width: 300px; margin:0;"><option value="">Selecciona una clase...</option></select>
+          <button class="btn btn-primary" id="btnCargarRanking">Ver Ranking</button>
+        </div>
+
+        <div class="card" style="margin-top:20px;">
+          <div class="card-title">Top 3</div>
+          <div class="podium-container" id="podiumDocenteContainer">
+            <div class="empty-state" style="width:100%; text-align:center;">Selecciona una clase para ver el ranking.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:24px;">
+          <div class="card-title">Clasificación General</div>
+          <div class="table-wrap ranking-list">
+            <table>
+              <thead><tr><th style="width:60px;">#</th><th>Alumno</th><th class="centered">Nivel</th><th class="centered">Puntaje</th></tr></thead>
+              <tbody id="rankingDocenteTableBody"><tr><td colspan="4" class="empty-state">Selecciona una clase.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ══ MODAL PERFIL ══ -->
+<div class="modal-overlay" id="perfilModal" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" id="cerrarPerfil">✕</button>
+    <div class="modal-title">Mi Perfil</div>
+    <div class="form-grid two">
+      <div class="fg"><label>Nombre</label><input type="text" id="pNombre" readonly></div>
+      <div class="fg"><label>Email</label><input type="email" id="pEmail" readonly></div>
+      <div class="fg"><label>Teléfono</label><input type="tel" id="pTelefono"></div>
+      <div class="fg"><label>Fecha de nacimiento</label><input type="date" id="pFecha"></div>
+    </div>
+    <div class="fg" style="margin-top:12px;"><label>Bio</label><textarea id="pBio" rows="3"></textarea></div>
+    <div class="form-footer"><button class="btn btn-primary" id="guardarPerfil"><i class="fas fa-save"></i> Guardar</button></div>
+  </div>
+</div>
+
+<!-- ══ MODAL NUEVA CLASE ══ -->
+<div class="modal-overlay" id="modalClase" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal('modalClase')">✕</button>
+    <div class="modal-title">Nueva Clase</div>
+    <div class="form-grid">
+      <div class="fg"><label>Nombre de la clase *</label><input type="text" id="claseNombre" placeholder="Ej: Grupo A - Contabilidad 2025"></div>
+      <div class="fg"><label>Descripción</label><textarea id="claseDesc" rows="3" placeholder="Descripción opcional"></textarea></div>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-accent" onclick="cerrarModal('modalClase')">Cancelar</button>
+      <button class="btn btn-success" id="guardarClase">✔ Crear Clase</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL NUEVO ALUMNO ══ -->
+<div class="modal-overlay" id="modalAlumno" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal('modalAlumno')">✕</button>
+    <div class="modal-title">Nuevo Alumno</div>
+    <div class="form-grid two">
+      <div class="fg"><label>Nombre completo *</label><input type="text" id="alNombre" placeholder="Nombre del alumno"></div>
+      <div class="fg"><label>Email *</label><input type="email" id="alEmail" placeholder="correo@ejemplo.com"></div>
+      <div class="fg"><label>Contraseña *</label><input type="password" id="alPass" placeholder="Contraseña inicial"></div>
+      <div class="fg"><label>Clase</label>
+        <select id="alClase">
+          <option value="">— Sin asignar —</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-accent" onclick="cerrarModal('modalAlumno')">Cancelar</button>
+      <button class="btn btn-success" id="guardarAlumno">✔ Crear Alumno</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL ASIGNAR ALUMNO ══ -->
+<div class="modal-overlay" id="modalAsignar" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal('modalAsignar')">✕</button>
+    <div class="modal-title">🔗 Asignar Alumno a Clase</div>
+    <div class="form-grid">
+      <div class="fg"><label>Alumno sin clase *</label>
+        <select id="asAlumno"><option value="">Cargando...</option></select>
+      </div>
+      <div class="fg"><label>Clase *</label>
+        <select id="asClase"><option value="">— Selecciona —</option></select>
+      </div>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-accent" onclick="cerrarModal('modalAsignar')">Cancelar</button>
+      <button class="btn btn-success" id="guardarAsignar">✔ Asignar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL EDITAR PREGUNTA ══ -->
+<div class="modal-overlay" id="modalPregunta" style="display:none;">
+  <div class="modal-box wide">
+    <button class="modal-close" onclick="cerrarModal('modalPregunta')">✕</button>
+    <div class="modal-title" id="modalPreguntaTitulo">Nueva Pregunta</div>
+    <div class="fg" style="margin-bottom:12px;"><label>Pregunta *</label><textarea id="inPregunta" rows="3"></textarea></div>
+    <div class="form-grid two">
+      <div class="fg"><label>Opción A *</label><input type="text" id="inOp0"></div>
+      <div class="fg"><label>Opción B *</label><input type="text" id="inOp1"></div>
+      <div class="fg"><label>Opción C *</label><input type="text" id="inOp2"></div>
+      <div class="fg"><label>Opción D *</label><input type="text" id="inOp3"></div>
+    </div>
+    <div class="fg" style="margin:12px 0;"><label>Respuesta correcta</label>
+      <select id="inRespuesta"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-accent" onclick="cerrarModal('modalPregunta')">Cancelar</button>
+      <button class="btn btn-success" id="guardarPreguntaBtn"><i class="fas fa-save"></i> Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/dashboard_docente.js?v=3"></script>
+</body>
+</html>

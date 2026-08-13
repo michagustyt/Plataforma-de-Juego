@@ -1,0 +1,162 @@
+[
+  {
+    "id": "p_nivel2_1",
+    "orden": 1,
+    "pregunta": "1.- Una factura de $120,000 + IVA se emitió como PPD, pero el cliente pagó el total el mismo día. ¿Qué se hace?",
+    "opciones": [
+      "Dejar como PPD y emitir complemento de pago inmediato",
+      "Emitir nota de crédito por el IVA y rezar",
+      "Cancelar y reemitir como PUE con la fecha correcta",
+      "Hacer nada, total es el mismo dinero"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Si el pago se realizó el mismo día, el método de pago correcto es PUE, no PPD.",
+      "Incorrecto: No se emite nota de crédito por el IVA en este caso.",
+      "Correcto: Al pagarse el mismo día, debe cancelarse la factura PPD y reemitirse como PUE (Pago en Una Sola Exhibición) con la fecha correcta.",
+      "Incorrecto: El método de pago incorrecto genera inconsistencias ante el SAT y puede derivar en multas."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo2/1.jpg"
+  },
+  {
+    "id": "p_nivel2_2",
+    "orden": 2,
+    "pregunta": "2.- Factura PPD de enero cobrada en febrero, pero no se emitió complemento de pago. ¿Qué se hace?",
+    "opciones": [
+      "Emitir complemento de pago con fecha de febrero y registrar IVA causado en febrero",
+      "Registrar el IVA en enero 'por intuición'",
+      "Emitir nueva factura PUE en febrero y duplicar ingreso",
+      "Cancelar todo y empezar la vida con otro RFC"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: El complemento de pago debe emitirse en el mes en que se recibió el pago; el IVA se causa en ese momento según el régimen de flujo de efectivo.",
+      "Incorrecto: El IVA en método PPD se causa cuando se recibe el pago, no cuando se emite la factura.",
+      "Incorrecto: Emitir nueva factura PUE duplicaría el ingreso fiscal.",
+      "Incorrecto: Cancelar el RFC no es una solución válida ni legal."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo2/2.jpg"
+  },
+  {
+    "id": "p_nivel2_3",
+    "orden": 3,
+    "pregunta": "3.- El cliente devuelve 3 de 10 piezas facturadas. ¿Qué se hace?",
+    "opciones": [
+      "Cancelar la factura completa y reemitir por 7 piezas",
+      "Registrar como descuento comercial sin CFDI",
+      "Guardar la devolución en la 'caja de los misterios'",
+      "Emitir nota de crédito parcial por el valor y el IVA correspondiente"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Cancelar y reemitir puede ser una opción, pero la nota de crédito parcial es la solución más eficiente para devoluciones parciales.",
+      "Incorrecto: Un descuento sin CFDI no tiene validez fiscal.",
+      "Incorrecto: No registrar la devolución genera inconsistencias en inventario e ingresos.",
+      "Correcto: La nota de crédito parcial es el CFDI correcto para registrar una devolución parcial, ajustando tanto el valor como el IVA correspondiente."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo2/3.jpg"
+  },
+  {
+    "id": "p_nivel2_4",
+    "orden": 4,
+    "pregunta": "4.- Los proveedores solo enviaron PDF sin XML timbrado. ¿Qué se hace?",
+    "opciones": [
+      "Acreditar el IVA con el PDF",
+      "Solicitar el XML y validar timbrado antes de acreditar",
+      "Capturar manualmente en Excel 'para salir del paso'",
+      "Postergar el registro hasta cierre anual"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: El PDF solo es la representación visual; el documento fiscal válido es el XML timbrado.",
+      "Correcto: Solo el XML con timbre fiscal digital del SAT es válido para acreditar IVA. Siempre debe solicitarse y validarse antes de registrar.",
+      "Incorrecto: Capturar en Excel no suple la obligación de contar con el CFDI en formato XML.",
+      "Incorrecto: Postergar el registro genera inconsistencias en declaraciones mensuales."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo2/4.jpg"
+  },
+  {
+    "id": "p_nivel2_5",
+    "orden": 5,
+    "pregunta": "5.- Se reciben $50,000 de anticipo sin CFDI correspondiente. ¿Qué se hace?",
+    "opciones": [
+      "Emitir CFDI de anticipo con IVA y posteriormente de ingresos por el resto",
+      "Esperar a la factura final",
+      "Emitir recibo simple 'anticipo moral'",
+      "Registrar como ingreso diferido sin impuestos"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Al recibir un anticipo, debe emitirse inmediatamente un CFDI de anticipo con IVA; al facturar el total, se descuenta el anticipo.",
+      "Incorrecto: El SAT exige emitir CFDI en el momento en que se recibe el anticipo, no cuando se entrega el bien o servicio.",
+      "Incorrecto: Un recibo simple no tiene validez fiscal.",
+      "Incorrecto: Los anticipos generan IVA en el momento de su cobro; no pueden diferirse sin impuesto."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo2/5.jpg"
+  },
+  {
+    "id": "p_nivel2_6",
+    "orden": 6,
+    "pregunta": "6.- Factura de internet de oficina también usada para Netflix del patrón. ¿Cómo se acredita el IVA?",
+    "opciones": [
+      "Pasar todo a 'gasto secreto'",
+      "Acreditar 100% porque 'se trabaja mucho'",
+      "No acreditar nada por ser mixto",
+      "Acreditar proporcionalmente el IVA solo por la parte de negocio"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: No existe la categoría de 'gasto secreto' en contabilidad.",
+      "Incorrecto: Solo puede acreditarse el IVA correspondiente al uso estrictamente empresarial.",
+      "Incorrecto: Puede acreditarse la proporción que corresponde al uso de negocio.",
+      "Correcto: Cuando un servicio tiene uso mixto (personal y empresarial), el IVA acreditable debe calcularse en proporción al uso empresarial."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo2/6.jpg"
+  },
+  {
+    "id": "p_nivel2_7",
+    "orden": 7,
+    "pregunta": "7.- Se vende un servicio a cliente extranjero sin prueba de exportación. ¿Cómo se factura?",
+    "opciones": [
+      "Aplicar 0% 'porque suena internacional'",
+      "Gravar al 16% y ya",
+      "Reunir pruebas de materialidad y residencia fiscal del cliente; aplicar 0% con soporte",
+      "Facturar sin impuesto y sin RFC extranjero"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: La tasa 0% no aplica automáticamente por ser un cliente extranjero; requiere documentación.",
+      "Incorrecto: Si se cumplen los requisitos de exportación de servicios, la tasa es 0%, no 16%.",
+      "Correcto: Para aplicar tasa 0% en exportación de servicios, se requiere documentar la materialidad del servicio y la residencia fiscal del cliente en el extranjero.",
+      "Incorrecto: Facturar sin RFC extranjero y sin documentación de exportación es una práctica irregular."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo2/7.jpg"
+  },
+  {
+    "id": "p_nivel2_8",
+    "orden": 8,
+    "pregunta": "8.- IVA trasladado $80,000; acreditable $65,000; pagos provisionales no aplicados. ¿Qué se determina?",
+    "opciones": [
+      "Determinar saldo a cargo $15,000, verificar pagos y presentar DIOT",
+      "Compensar con 'saldo emocional a favor'",
+      "Declarar en ceros 'por si acaso'",
+      "Patear al siguiente mes"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: El IVA a pagar es $80,000 - $65,000 = $15,000. Deben verificarse pagos provisionales aplicados y presentarse la DIOT correspondiente.",
+      "Incorrecto: No existe el concepto de 'saldo emocional a favor' en la Ley del IVA.",
+      "Incorrecto: Declarar en ceros cuando hay un saldo a cargo es una práctica irregular con multas.",
+      "Incorrecto: Diferir el pago de IVA genera recargos y actualizaciones."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo2/8.jpg"
+  }
+]

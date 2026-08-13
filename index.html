@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crónicas Fiscales - Redirigiendo...</title>
+    <script>
+        // Verificar sesión y redirigir según rol
+        fetch('api/login.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.autenticado) {
+                    const rol = data.usuario.rol;
+                    if (rol === 'alumno') {
+                        window.location.replace('dashboard_alumno.html');
+                    } else if (rol === 'docente') {
+                        window.location.replace('dashboard_docente.html');
+                    } else if (rol === 'admin') {
+                        window.location.replace('dashboard_admin.html');
+                    } else {
+                        window.location.replace('login.html');
+                    }
+                } else {
+                    window.location.replace('login.html');
+                }
+            })
+            .catch(() => {
+                window.location.replace('login.html');
+            });
+    </script>
+</head>
+<body>
+    <p>Redirigiendo a Crónicas Fiscales...</p>
+</body>
+</html>

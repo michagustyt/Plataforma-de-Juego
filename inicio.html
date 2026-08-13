@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Crónicas Fiscales! - El Origen del Godín</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="css/inicio.css">
+<link rel="stylesheet" href="css/dark-mode.css">
+<script src="js/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<audio id="background-music" loop preload="auto">
+    <source src="assets/Audio.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+</audio>
+
+<div class="portada-container">
+    <button id="configBtn" class="config-btn">⚙️ Configuración</button>
+    <button class="music-button" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span> 
+        <span id="music-text">Música</span>
+    </button>
+
+    <div class="portada-background-illustration"></div>
+
+    <div class="portada-content">
+        <div class="portada-logo">
+            <span>☀️</span> Crónicas Fiscales <span>☕️</span>
+        </div>
+        <h1 class="portada-main-title">EL ORIGEN <br> DEL GODÍN</h1>
+        <p class="portada-subtitle">¿Crees saber de contabilidad? Demuéstralo, supera los retos y conviértete en un maestro de los impuestos. ¡La diversión está declarada!</p>
+        
+        <div class="portada-button-group">
+            <button class="main-button" onclick="iniciarJuego()">Comenzar Aventura</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/inicio.js"></script>
+
+</body>
+</html>

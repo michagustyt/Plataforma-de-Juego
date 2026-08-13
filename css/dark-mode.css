@@ -1,0 +1,342 @@
+/* ============================================================
+   dark-mode.css — Estilos globales para el modo oscuro
+   ============================================================ */
+
+/* Sobrescribir variables CSS cuando el tema es oscuro */
+html[data-theme="dark"] {
+    --text-dark: #f0f0f0; /* Texto claro para mejor contraste */
+    --text-light: #222222; /* Texto oscuro para botones claros */
+    --bg-body-start: #121212; /* Fondo muy oscuro */
+    --bg-body-end: #2a2a2a; /* Fondo gris oscuro */
+    --bg-card: rgba(30, 30, 30, 0.95); /* Tarjetas semi-transparentes oscuras */
+    --shadow-light: 0 8px 20px rgba(0, 0, 0, 0.5);
+    --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.8);
+    --border-radius: 15px;
+    --primary-color: #f28b70; /* Color primario un poco más claro para resaltar */
+    --bg-correct: #1b4332; /* Verde oscuro para modales de correcto */
+    --border-correct: #40916c;
+    --bg-incorrect: #4a1515; /* Rojo oscuro para modales de error */
+    --border-incorrect: #b13a3a;
+}
+
+/* Excepciones o ajustes específicos para dark mode */
+html[data-theme="dark"] body {
+    /* Forzar fondo cuando cambia si hay imagen estática predefinida, aunque el gradiente funcionará */
+}
+
+/* Ajustes para SWEETALERT en modo oscuro */
+html[data-theme="dark"] .swal2-popup {
+    background-color: var(--bg-card) !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--accent-color);
+}
+html[data-theme="dark"] .swal2-title,
+html[data-theme="dark"] .swal2-html-container {
+    color: var(--text-dark) !important;
+}
+
+/* Ajuste para inputs en modo oscuro (Panel Docente) */
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+    background-color: #333 !important;
+    color: var(--text-dark) !important;
+    border-color: #555 !important;
+}
+
+html[data-theme="dark"] .level-card,
+html[data-theme="dark"] .hub-card {
+    background: var(--bg-card);
+}
+
+html[data-theme="dark"] table th {
+    background-color: #444;
+    color: #f0f0f0;
+}
+html[data-theme="dark"] table tbody tr {
+    background-color: rgba(50, 50, 50, 0.8);
+}
+html[data-theme="dark"] table tbody tr:nth-child(even) {
+    background-color: rgba(60, 60, 60, 0.8);
+}
+html[data-theme="dark"] table tbody tr:hover {
+    background-color: rgba(80, 80, 80, 0.9);
+}
+
+/* Ajustes de contraste para los botones de opciones */
+html[data-theme="dark"] .opciones button:not([disabled]):hover,
+html[data-theme="dark"] .opciones button:not([disabled]):focus,
+html[data-theme="dark"] .opciones button:not([disabled]):active {
+    color: var(--text-light) !important;
+}
+
+/* ============================================================
+   ESTILOS DEL BOTÓN DE CONFIGURACIÓN
+   ============================================================ */
+.config-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--secondary-color);
+    color: #4f3422; /* Siempre oscuro para mantener legibilidad del botón */
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.config-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* En móviles, ajustar si choca con safe-area */
+@media (max-width: 768px) {
+    .config-btn {
+        top: 10px;
+        left: 10px;
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+
+/* ============================================================
+   REGLAS PARA OCULTAR FONDOS DE PANTALLA
+   ============================================================ */
+/* Restaura el gradiente seguro en el body, y borra imágenes de contenedores */
+[data-hide-bg="true"] body {
+    background-image: linear-gradient(to top, var(--bg-body-start), var(--bg-body-end)) !important;
+}
+[data-hide-bg="true"] .portada-background-illustration,
+[data-hide-bg="true"] .final-container,
+[data-hide-bg="true"] .game-container {
+    background-image: none !important;
+}
+
+/* ============================================================
+   TOGGLE SWITCH — Topbar
+   ============================================================ */
+.theme-toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 4px;
+}
+.theme-icon {
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.9;
+    user-select: none;
+}
+.theme-toggle-label {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    cursor: pointer;
+}
+.theme-toggle-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+.theme-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.25);
+    border: 2px solid rgba(255,255,255,0.45);
+    border-radius: 24px;
+    transition: background 0.3s ease;
+}
+.theme-toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+.theme-toggle-checkbox:checked + .theme-toggle-slider {
+    background: rgba(90,60,160,0.55);
+    border-color: rgba(160,120,255,0.6);
+}
+.theme-toggle-checkbox:checked + .theme-toggle-slider::before {
+    transform: translateY(-50%) translateX(22px);
+    background: #e2d4ff;
+}
+
+/* ============================================================
+   DASHBOARD — MODO OSCURO COMPLETO
+   ============================================================ */
+html[data-theme="dark"] body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e8e0d8;
+}
+
+/* Topbar */
+html[data-theme="dark"] .topbar {
+    background: linear-gradient(135deg, #2d1b12, #3d2416) !important;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+}
+
+/* Sidebar */
+html[data-theme="dark"] .sidebar {
+    background: rgba(28, 20, 14, 0.97) !important;
+    border-right-color: #5a3a22;
+}
+html[data-theme="dark"] .nav-item {
+    color: #d4c5b5;
+}
+html[data-theme="dark"] .nav-item:hover {
+    background: rgba(231,111,81,0.15);
+    color: #f4a261;
+}
+html[data-theme="dark"] .nav-item.active {
+    background: linear-gradient(135deg, #c1432a, #d4763a);
+    color: #fff;
+}
+html[data-theme="dark"] .user-pill {
+    border-bottom-color: #5a3a22;
+}
+html[data-theme="dark"] .user-pill .uemail {
+    color: #9c7a5a;
+}
+
+/* Cards */
+html[data-theme="dark"] .card {
+    background: #1e1410 !important;
+    border-color: rgba(231,111,81,0.2);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+html[data-theme="dark"] .card-title {
+    color: #f4a261;
+}
+
+/* Stat cards */
+html[data-theme="dark"] .stat-card {
+    background: #1e1410 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+html[data-theme="dark"] .stat-label {
+    color: #9c7a5a;
+}
+html[data-theme="dark"] .stat-value {
+    color: #e8e0d8;
+}
+
+/* Tables */
+html[data-theme="dark"] table {
+    background: #1e1410 !important;
+}
+html[data-theme="dark"] tbody tr {
+    background-color: transparent;
+    border-bottom-color: rgba(231,111,81,0.12);
+}
+html[data-theme="dark"] tbody tr:hover {
+    background: rgba(231,111,81,0.08) !important;
+}
+html[data-theme="dark"] tbody td {
+    color: #d4c5b5;
+}
+html[data-theme="dark"] tbody td:first-child {
+    color: #f4a261;
+}
+
+/* Section title */
+html[data-theme="dark"] .section-title {
+    color: #f4a261;
+    border-bottom-color: #5a3a22;
+}
+
+/* Action bar */
+html[data-theme="dark"] .action-bar {
+    border-bottom-color: #5a3a22;
+}
+
+/* Modals */
+html[data-theme="dark"] .modal-box {
+    background: #1e1410 !important;
+    border-color: #5a3a22;
+}
+html[data-theme="dark"] .modal-title {
+    color: #f4a261;
+}
+html[data-theme="dark"] .modal-close {
+    color: #9c7a5a;
+}
+html[data-theme="dark"] .modal-close:hover {
+    color: #f4a261;
+}
+html[data-theme="dark"] .modal-overlay {
+    background: rgba(0,0,0,0.7);
+}
+
+/* Form elements */
+html[data-theme="dark"] .fg label {
+    color: #d4c5b5;
+}
+html[data-theme="dark"] .fg input,
+html[data-theme="dark"] .fg select,
+html[data-theme="dark"] .fg textarea {
+    background: #2a1e16 !important;
+    color: #e8e0d8 !important;
+    border-color: #5a3a22 !important;
+}
+html[data-theme="dark"] .fg input:focus,
+html[data-theme="dark"] .fg select:focus,
+html[data-theme="dark"] .fg textarea:focus {
+    border-color: #e76f51 !important;
+    box-shadow: 0 0 0 3px rgba(231,111,81,0.2) !important;
+}
+html[data-theme="dark"] .fg input[readonly] {
+    background: #1a1209 !important;
+    color: #9c7a5a !important;
+}
+
+/* Niv cards (alumno) */
+html[data-theme="dark"] .niv-card {
+    background: #1e1410 !important;
+    border-color: rgba(231,111,81,0.2);
+}
+html[data-theme="dark"] .niv-card:hover {
+    border-color: #e76f51;
+}
+html[data-theme="dark"] .niv-card .niv-name {
+    color: #e8e0d8;
+}
+
+/* Progress bar */
+html[data-theme="dark"] .prog-bar-wrap {
+    background: #3a2a1e;
+}
+
+/* Pregunta cards (docente) */
+html[data-theme="dark"] .pregunta-card {
+    background: #1e1410 !important;
+    border-color: #5a3a22;
+}
+html[data-theme="dark"] .pregunta-card .pq-text {
+    color: #e8e0d8;
+}
+
+/* Loading & empty */
+html[data-theme="dark"] .loading-msg {
+    color: #f4a261;
+}
+html[data-theme="dark"] .empty-state {
+    color: #9c7a5a;
+}

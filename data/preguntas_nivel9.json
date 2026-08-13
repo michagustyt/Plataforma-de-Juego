@@ -1,0 +1,82 @@
+[
+  {
+    "id": "p_nivel9_1",
+    "orden": 1,
+    "pregunta": "1.- Es el momento del cierre final. ¿Qué entregas para demostrar el control total de las finanzas?",
+    "opciones": [
+      "Exportar Excel y mandarlo",
+      "Archivo vacío que diga 'confía'",
+      "Conciliación fiscal, contable y financiera con anexos",
+      "PDF de 1000 páginas sin índice"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Un Excel sin soporte documental no demuestra control integral de las finanzas.",
+      "Incorrecto: La confianza no sustituye la evidencia documental en un cierre financiero.",
+      "Correcto: El cierre final debe incluir conciliación fiscal (SAT vs contabilidad), contable (estados financieros vs auxiliares) y financiera (flujo vs resultados), con todos los anexos y soportes organizados.",
+      "Incorrecto: Un PDF extenso sin estructura, índice ni referencias cruzadas no es auditable."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo9/1.jpg"
+  },
+  {
+    "id": "p_nivel9_2",
+    "orden": 2,
+    "pregunta": "2.- ¿Cómo pruebas la resiliencia del sistema financiero ante escenarios adversos?",
+    "opciones": [
+      "Simulaciones extremas de tasas, PIB y defaults",
+      "Solo escenario base",
+      "Optimista infinito",
+      "Números bonitos improvisados"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: El stress testing financiero aplica escenarios extremos pero plausibles (shock de tasas, caída de PIB, defaults en cadena) para evaluar la resistencia del sistema y la suficiencia de capital.",
+      "Incorrecto: El escenario base no revela vulnerabilidades ante situaciones adversas.",
+      "Incorrecto: El escenario permanentemente optimista ignora riesgos reales y da falsa seguridad.",
+      "Incorrecto: Los números improvisados no tienen valor analítico ni sirven para tomar decisiones."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo9/2.png"
+  },
+  {
+    "id": "p_nivel9_3",
+    "orden": 3,
+    "pregunta": "3.- ¿Cuál es el método más robusto para valorar una empresa?",
+    "opciones": [
+      "1 peso 'para no pagar impuestos'",
+      "Valor que sueña el jefe",
+      "Multiplicador al azar",
+      "DCF con WACC y análisis de sensibilidad"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Valorar a $1 para evadir impuestos es fraude fiscal.",
+      "Incorrecto: Los sueños del jefe no son un método de valuación reconocido.",
+      "Incorrecto: Un multiplicador sin fundamento en comparables y sin análisis de sensibilidad carece de rigor.",
+      "Correcto: El método de Flujos de Caja Descontados (DCF) con el Costo Promedio Ponderado de Capital (WACC) es el más robusto, especialmente combinado con análisis de sensibilidad para evaluar el impacto de los supuestos clave."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo9/3.jpg"
+  },
+  {
+    "id": "p_nivel9_4",
+    "orden": 4,
+    "pregunta": "4.- Es la batalla final contra el dragón financiero. ¿Qué presentas como tu defensa definitiva?",
+    "opciones": [
+      "Rendirse",
+      "Tirar la laptop por la ventana",
+      "Llamar a RH",
+      "Entregar todo: cierre, auditoría, NIIF, riesgos y automatización"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Rendirse no es una opción para un contador que domina las finanzas.",
+      "Incorrecto: La violencia contra el equipo de cómputo no resuelve ningún problema financiero.",
+      "Incorrecto: RH no es quien combate al dragón financiero.",
+      "Correcto: La defensa definitiva es la integración total: cierre contable documentado, auditoría con hallazgos resueltos, aplicación de NIIF, gestión de riesgos y automatización de procesos. ¡El dragón no tiene nada contra un contador completo!"
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo9/4.jpg"
+  }
+]

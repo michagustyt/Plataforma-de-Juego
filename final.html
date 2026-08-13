@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Felicidades, has completado Crónicas Fiscales!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <script src="js/theme.js"></script>
+    <style>
+        /* === VARIABLES CSS (TEMA CÁLIDO) === */
+        :root {
+            --primary-color: #e76f51; /* Naranja Terracota */
+            --secondary-color: #f4a261; /* Amarillo Arena */
+            --accent-color: #e9c46a; /* Amarillo Dorado */
+            --text-dark: #4f3422; /* Café Oscuro */
+            --text-light: #fefefe; /* Blanco cálido */
+            --bg-body-start: #fff1e6; /* Crema */
+            --bg-body-end: #fde4e1; /* Rosa pálido */
+            --bg-card: rgba(255, 250, 245, 0.92); /* Crema translúcido */
+            --shadow-light: 0 8px 20px rgba(80, 50, 30, 0.1);
+            --shadow-heavy: 0 15px 35px rgba(80, 50, 30, 0.2);
+        }
+
+        /* === ESTILOS GLOBALES === */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            min-height: 100vh;
+            background-image: linear-gradient(to top, var(--bg-body-start), var(--bg-body-end));
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-dark);
+            transition: background-image 1.2s ease-in-out;
+        }
+        
+        .oculto { display: none !important; }
+
+        .final-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            background-image: url('./assets/fondoVictoria.png'); /* Imagen de fondo para el final del juego */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .final-card {
+            background: var(--bg-card);
+            padding: 60px 50px;
+            border-radius: 35px;
+            box-shadow: var(--shadow-heavy);
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+            border: 5px solid var(--accent-color);
+            animation: fadeInScale 1.5s ease;
+        }
+
+        .final-card h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 0px var(--text-light);
+            line-height: 1.2;
+        }
+
+        .final-card p {
+            font-size: 1.3rem;
+            margin: 20px 0;
+            color: var(--text-dark);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        .final-card p strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .final-card .button-group {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .final-card button {
+            background: var(--primary-color);
+            border: none;
+            color: var(--text-light);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .final-card button:hover {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .final-card button.secondary {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+        }
+        .final-card button.secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        /* === BOTÓN DE MÚSICA (Copiado de level_select) === */
+        .music-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+        .music-button:hover {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+
+        /* ===== ANIMACIONES (Copiado de level_select) ===== */
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        
+        /* === ESTILOS PARA MODAL PERSONALIZADO === */
+        .swal-custom-popup {
+            border-radius: 20px !important;
+            border: 3px solid var(--accent-color) !important;
+            box-shadow: 0 15px 40px rgba(80, 50, 30, 0.3) !important;
+            background-color: var(--bg-card) !important;
+        }
+        
+        .swal-custom-title {
+            font-family: 'Fredoka One', cursive !important;
+            color: var(--primary-color) !important;
+            font-size: 1.8rem !important;
+        }
+
+        @media (max-width: 768px) {
+            .final-card h1 { font-size: 2.5rem; }
+            .final-card p { font-size: 1.1rem; }
+            .final-card button { font-size: 1rem; padding: 12px 30px; }
+            .final-card { padding: 40px 30px; }
+        }
+    </style>
+</head>
+<body>
+    <button id="configBtn" class="config-btn">⚙️ Configuración</button>
+
+    <div class="final-container">
+        
+        <button id="musicButton" class="music-button"><span>🎵</span> Música</button>
+
+        <div class="final-card">
+            <h1 id="finalTitle">¡Felicitaciones!</h1>
+            <p><strong><span id="playerName">Jugador</span></strong>, ¡lo lograste!</p>
+            <p>Has navegado con éxito a través de las complejidades del mundo fiscal y has emergido como un verdadero experto. ¡Tu dedicación y astucia han salvado el día!</p>
+            <p>Las finanzas ya no tienen secretos para ti. ¡Ahora eres el Gódin definitivo!</p>
+            
+            <div class="button-group">
+                <button id="restartGameButton">Seleccionar Nivel</button>
+                <button id="creditsButton" class="secondary">Créditos</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elemento de Audio (Misma música que el resto del juego) --><audio id="backgroundMusic" loop>
+        <source src="./assets/Audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Scripts locales (sin Firebase) -->
+    <script>
+        // --- Elementos del DOM ---
+        const playerNameEl = document.getElementById("playerName");
+        const restartGameButton = document.getElementById("restartGameButton");
+        const creditsButton = document.getElementById("creditsButton");
+        
+        // --- Lógica de Música (copiado del resto del juego) ---
+        const musicButtonEl = document.getElementById("musicButton");
+        const backgroundMusicEl = document.getElementById("backgroundMusic");
+        let isMusicPlaying = false;
+
+        function playMusic() {
+            if (!isMusicPlaying) {
+                backgroundMusicEl.play().then(() => {
+                    isMusicPlaying = true;
+                    musicButtonEl.innerHTML = '<span>🔇</span> Silencio';
+                }).catch(e => console.log("Navegador bloqueó autoplay."));
+            }
+        }
+        musicButtonEl.onclick = () => {
+            if (isMusicPlaying) {
+                backgroundMusicEl.pause();
+                isMusicPlaying = false;
+                musicButtonEl.innerHTML = '<span>🎵</span> Música';
+            } else {
+                backgroundMusicEl.play();
+                isMusicPlaying = true;
+                musicButtonEl.innerHTML = '<span>🔇</span> Silencio';
+            }
+        };
+
+        // --- Lógica de la pantalla final ---
+        async function initFinalScreen() {
+            try {
+                const res = await fetch('./api/login.php');
+                const data = await res.json();
+                if (data.autenticado && data.usuario && data.usuario.nombre) {
+                    playerNameEl.textContent = data.usuario.nombre;
+                } else {
+                    window.location.href = 'login.html';
+                    return;
+                }
+            } catch (error) {
+                console.error("Error verificando sesión:", error);
+                playerNameEl.textContent = "Jugador";
+            }
+
+            playMusic(); // Iniciar la música
+
+            restartGameButton.onclick = () => {
+                // Redirigir a la pantalla de selección de niveles sin perder progreso
+                window.location.href = "introduccion.html";
+            };
+
+            creditsButton.onclick = () => {
+                Swal.fire({
+                    title: "¡Felicidades por completar el juego!", 
+                    html: `
+                        <div style="text-align: left; line-height: 1.6;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 10px;">Créditos:</h3>
+                        <p><strong>Docente:</strong><br>Profesora Benedicta Domínguez<br> Doctora Miriam Olvera</p>
+                        <p><strong>Desarrollo:</strong><br>
+                        </p>
+                        <p><strong>Carrera:</strong><br>Ingeniería en Sistemas Computacionales</p>
+                        </div>
+                    `,
+                    icon: "success", 
+                    confirmButtonText: "¡Genial!",
+                    confirmButtonColor: 'var(--primary-color)' 
+                });
+            };
+        }
+
+        initFinalScreen();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "p_nivel3_1",
+    "orden": 1,
+    "pregunta": "1.- La empresa compró una laptop por $30,000, vida útil 3 años, sin valor residual. ¿Cómo se deprecia?",
+    "opciones": [
+      "Depreciar solo si la usa el hijo del patrón",
+      "No depreciar",
+      "Registrar depreciación mensual: 30,000 / 36",
+      "Depreciar todo al momento de compra"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: La depreciación no depende de quién use el activo, sino de su vida útil.",
+      "Incorrecto: Todo activo fijo con vida útil definida debe depreciarse.",
+      "Correcto: La depreciación mensual es $30,000 / 36 meses = $833.33, distribuyendo el costo a lo largo de su vida útil.",
+      "Incorrecto: Depreciar todo al momento de compra es el método de gasto inmediato, no aplica para activos fijos."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/1.jpg"
+  },
+  {
+    "id": "p_nivel3_2",
+    "orden": 2,
+    "pregunta": "2.- La empresa no ha provisionado las vacaciones devengadas de sus empleados. ¿Qué se hace?",
+    "opciones": [
+      "Reconocer provisión por el pasivo laboral según días devengados",
+      "Registrar solo cuando el empleado salga",
+      "Pagar con vales de despensa 'morales'",
+      "Hacer encuesta para ver quién piensa irse"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Las vacaciones devengadas son un pasivo laboral que debe reconocerse contablemente conforme se van generando, según NIF D-3.",
+      "Incorrecto: El principio de devengado exige reconocer el pasivo cuando se genera, no cuando se paga.",
+      "Incorrecto: Los vales de despensa no sustituyen la obligación de reconocer el pasivo laboral.",
+      "Incorrecto: La provisión de vacaciones no depende de intenciones de los empleados sino de días laborados."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/2.jpg"
+  },
+  {
+    "id": "p_nivel3_3",
+    "orden": 3,
+    "pregunta": "3.- Hay 10 impresoras obsoletas registradas a su costo original. ¿Qué procede?",
+    "opciones": [
+      "Reetiquetar como 'impresoras vintage premium'",
+      "Reconocer pérdida por deterioro al valor neto de realización",
+      "Mantener costo 'para que no se vea feo'",
+      "Regalarlas y deducir como donativo sin requisitos"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: Cambiar el nombre del activo no altera su valor contable ni su realidad económica.",
+      "Correcto: Cuando un activo pierde valor significativamente, debe reconocerse una pérdida por deterioro ajustándolo a su valor neto de realización.",
+      "Incorrecto: Mantener activos sobrevaluados distorsiona los estados financieros.",
+      "Incorrecto: Para deducir donativos se requieren requisitos específicos; no puede hacerse sin documentación."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/3.jpg"
+  },
+  {
+    "id": "p_nivel3_4",
+    "orden": 4,
+    "pregunta": "4.- Contrato de oficina a 36 meses, con renta fija y depósito. ¿Cómo se contabiliza?",
+    "opciones": [
+      "Llamar al casero para pedir factura sin IVA",
+      "Llevarlo 'fuera de balance'",
+      "Registrar todo como gasto de renta mensual",
+      "Reconocer pasivo por arrendamiento y derecho de uso; depreciar y devengar intereses"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: El IVA en arrendamientos se cobra independientemente; llamar al casero no resuelve el registro contable.",
+      "Incorrecto: Bajo IFRS 16 y NIF D-5, los arrendamientos operativos de largo plazo deben reconocerse en balance.",
+      "Incorrecto: Un contrato de 36 meses requiere reconocimiento como arrendamiento con derecho de uso.",
+      "Correcto: Bajo IFRS 16, se reconoce un activo de derecho de uso y un pasivo por arrendamiento; se deprecia el activo y se devengan intereses sobre el pasivo."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/4.jpg"
+  },
+  {
+    "id": "p_nivel3_5",
+    "orden": 5,
+    "pregunta": "5.- El banco muestra 3 depósitos no identificados y 2 cheques en tránsito. ¿Qué procede?",
+    "opciones": [
+      "Reconocer todo como ingreso extra",
+      "Mover diferencias a 'Otros'",
+      "Identificar depósitos con CFDI y registrar cheques en tránsito; ajustar conciliación",
+      "Reconciliar 'a ojo de buen cubero'"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Los depósitos no identificados deben investigarse antes de reconocerse como ingresos.",
+      "Incorrecto: Mover diferencias a 'Otros' oculta problemas reales en la conciliación.",
+      "Correcto: Los depósitos deben identificarse con su CFDI correspondiente; los cheques en tránsito se registran como partidas conciliatorias hasta que sean cobrados.",
+      "Incorrecto: Una conciliación bancaria requiere precisión y documentación, no estimaciones."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/5.jpg"
+  },
+  {
+    "id": "p_nivel3_6",
+    "orden": 6,
+    "pregunta": "6.- Proyecto de software de 6 meses, 60% de avance, cobro al final. ¿Cuándo se reconoce el ingreso?",
+    "opciones": [
+      "Reconocer ingreso por porcentaje de avance con evidencia",
+      "Hasta el cobro",
+      "Reconocer 100% de avance",
+      "Ponerlo como anticipo de clientes"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Bajo IFRS 15, si el desempeño es a lo largo del tiempo, el ingreso se reconoce según el porcentaje de avance medido con evidencia objetiva.",
+      "Incorrecto: El método de base de efectivo no aplica bajo IFRS 15 para contratos de largo plazo.",
+      "Incorrecto: Reconocer 100% cuando solo hay 60% de avance sobrestima los ingresos.",
+      "Incorrecto: Solo son anticipos cuando no se ha iniciado el desempeño de la obligación."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/6.jpg"
+  },
+  {
+    "id": "p_nivel3_7",
+    "orden": 7,
+    "pregunta": "7.- Hay diferencias temporales por depreciación fiscal acelerada. ¿Qué tratamiento se da?",
+    "opciones": [
+      "Llevarlo a una hoja aparte",
+      "Compensarlo contra IVA",
+      "Ignorarlo",
+      "Reconocer ISR diferido por la diferencia entre base contable y fiscal"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Las diferencias temporales no desaparecen al aislarlas en una hoja.",
+      "Incorrecto: El ISR diferido no puede compensarse contra IVA; son impuestos diferentes.",
+      "Incorrecto: Ignorar diferencias temporales distorsiona el gasto de impuesto del período.",
+      "Correcto: Las diferencias temporales entre la base contable y fiscal del activo generan ISR diferido, que debe reconocerse según NIF D-4 / IAS 12."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/7.jpg"
+  },
+  {
+    "id": "p_nivel3_8",
+    "orden": 8,
+    "pregunta": "8.- La empresa tiene utilidad positiva, pero caja negativa. ¿Cómo se explica?",
+    "opciones": [
+      "Copiar el estado de resultados y llamarlo 'flujo'",
+      "Armar flujo indirecto: utilidad + ajustes no monetarios +/- cambios en capital de trabajo",
+      "Poner 'se usó en operaciones' y salir corriendo",
+      "Quitar el rubro de 'clientes' para que cuadre"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: El estado de resultados y el estado de flujo de efectivo son documentos distintos con propósitos diferentes.",
+      "Correcto: El método indirecto parte de la utilidad neta y ajusta por partidas no monetarias (depreciación, amortización) y cambios en capital de trabajo para llegar al flujo de operación.",
+      "Incorrecto: El estado de flujo de efectivo requiere un método estructurado, no estimaciones.",
+      "Incorrecto: Eliminar rubros no corrige el flujo de efectivo real."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/8.jpg"
+  },
+  {
+    "id": "p_nivel3_9",
+    "orden": 9,
+    "pregunta": "9.- Una sola persona compra, recibe, registra y paga. ¿Qué riesgo representa y qué se hace?",
+    "opciones": [
+      "Hacer juramento de honestidad anual",
+      "Poner una cámara y ya",
+      "Dejarlo así 'porque confío'",
+      "Segregar funciones: compras, recepción, contabilidad y tesorería"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Los juramentos no son un control interno efectivo reconocido.",
+      "Incorrecto: Una cámara no separa responsabilidades ni previene fraudes.",
+      "Incorrecto: La confianza no reemplaza los controles internos; aumenta el riesgo de fraude.",
+      "Correcto: La segregación de funciones es un control interno clave; ninguna persona debe controlar todo el ciclo de compras para reducir el riesgo de fraude."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/9.jpg"
+  },
+  {
+    "id": "p_nivel3_10",
+    "orden": 10,
+    "pregunta": "10.- Todo está listo, pero no hay índice, referencias cruzadas ni soporte de ajustes. ¿Qué se hace?",
+    "opciones": [
+      "Armar índice, numerar cédulas, vincular pólizas y XML, checklist de cierre",
+      "Subir todo a carpeta 'FINAL_V3_DEFINIDO_ahora_sí'",
+      "Mandar correo que diga 'Todo listo, por favor revisar'",
+      "Imprimir todo y meterlo en una caja de zapatos"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Un cierre contable bien documentado requiere índice de cédulas, numeración correlativa, vínculos entre pólizas y CFDI, y un checklist de cierre verificado.",
+      "Incorrecto: El nombre de la carpeta no organiza ni valida la información.",
+      "Incorrecto: Decir que está listo no lo hace estar listo; el soporte documental es obligatorio.",
+      "Incorrecto: La información en caja de zapatos no es un archivo contable organizado ni auditable."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo3/10.jpg"
+  }
+]

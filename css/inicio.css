@@ -1,0 +1,431 @@
+    /* === VARIABLES CSS (TEMA CÁLIDO) === */
+    :root {
+        --primary-color: #e76f51; /* Naranja Terracota */
+        --secondary-color: #f4a261; /* Amarillo Arena */
+        --accent-color: #e9c46a; /* Amarillo Dorado */
+        --text-dark: #4f3422; /* Café Oscuro */
+        --text-light: #fefefe; /* Blanco cálido */
+        --bg-body-start: #fff1e6; /* Crema */
+        --bg-body-end: #fde4e1; /* Rosa pálido */
+        --bg-card: rgba(255, 250, 245, 0.92); /* Crema translúcido */
+        --bg-music-button: #8dcb83; /* Verde menta para el botón de música */
+        --shadow-light: 0 8px 20px rgba(80, 50, 30, 0.1);
+        --shadow-heavy: 0 15px 35px rgba(80, 50, 30, 0.2);
+    }
+
+    /* === ESTILOS GLOBALES === */
+    * { 
+        box-sizing: border-box; 
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        height: 100vh;
+        height: 100dvh; /* Viewport dinámico */
+        background-image: linear-gradient(to top, var(--bg-body-start), var(--bg-body-end));
+        background-size: cover;
+        background-position: center;
+        background-attachment: scroll; /* Mejor rendimiento en móviles */
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        color: var(--text-dark);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Soporte para dispositivos con notch */
+    @supports (padding: max(0px)) {
+        body {
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+            padding-top: max(0px, env(safe-area-inset-top));
+            padding-bottom: max(0px, env(safe-area-inset-bottom));
+        }
+    }
+
+    /* === CONTENEDOR PRINCIPAL DE LA PORTADA === */
+    .portada-container {
+        position: relative;
+        width: clamp(90%, 95vw, 800px);
+        height: clamp(85%, 90vh, 900px);
+        background-color: var(--bg-card);
+        border-radius: clamp(15px, 4vw, 35px);
+        box-shadow: var(--shadow-heavy);
+        padding: clamp(15px, 4vw, 30px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        border: clamp(2px, 0.5vw, 4px) solid var(--primary-color);
+        animation: fadeInScale 1.2s ease-out;
+    }
+
+    /* Responsividad específica */
+    @media (max-width: 480px) {
+        .portada-container {
+            width: 95%;
+            height: 95%;
+            padding: 1rem;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .portada-container {
+            max-width: 900px;
+            max-height: 1000px;
+        }
+    }
+
+    /* === FONDO ILUSTRADO DEL EDIFICIO (ajustado para ser una imagen de placeholder) === */
+    .portada-background-illustration {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80%; 
+        background-image: url('../assets/inicio (2).png'); 
+        background-size: cover;
+        background-position: center bottom;
+        z-index: 1;
+        border-bottom-left-radius: 30px; 
+        border-bottom-right-radius: 30px;
+        filter: saturate(1.1) brightness(1.05); 
+        display: flex; 
+        flex-direction: column;
+        justify-content: flex-start; 
+    }
+
+    .portada-background-illustration::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%; 
+        background: linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255, 241, 230, 0.8) 50%, rgba(255, 241, 230, 0.95) 100%);
+        z-index: 2; 
+    }
+
+    /* Contenido de texto y botones sobre la ilustración */
+    .portada-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .portada-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 10px;
+    }
+
+    .portada-logo span {
+        font-size: 1.8rem; /* Iconos más grandes */
+        color: var(--accent-color);
+        line-height: 1;
+    }
+
+    .portada-main-title {
+        font-family: 'Fredoka One', cursive;
+        font-size: clamp(2rem, 7vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: clamp(10px, 2vw, 15px);
+        color: var(--primary-color);
+        text-shadow: 2px 2px 0px var(--text-light), 4px 4px 0px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .portada-subtitle {
+        font-size: clamp(1.1rem, 4vw, 1.6rem);
+        font-weight: 700;
+        color: #000000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        line-height: 1.3;
+    }
+
+    /* === Botones === */
+    .portada-button-group {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(10px, 3vw, 15px);
+        width: 100%;
+        max-width: clamp(280px, 80vw, 350px);
+        margin: 0 auto;
+    }
+
+    .portada-button-group button {
+        padding: clamp(12px, 3vw, 15px) clamp(20px, 5vw, 30px);
+        border-radius: clamp(15px, 4vw, 30px);
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        min-height: 44px; /* Accesibilidad táctil */
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .portada-button-group .main-button {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+    }
+
+    .portada-button-group .main-button:hover,
+    .portada-button-group .main-button:focus {
+        background-color: var(--secondary-color);
+        color: var(--text-dark);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        outline: none;
+    }
+
+    .portada-button-group .secondary-button {
+        background-color: var(--text-light);
+        color: var(--text-dark);
+        border: 2px solid var(--accent-color);
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .portada-button-group .secondary-button:hover,
+    .portada-button-group .secondary-button:focus {
+        background-color: var(--accent-color);
+        border-color: var(--primary-color);
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        outline: none;
+    }
+
+    /* Estados activos para dispositivos táctiles */
+    @media (hover: none) {
+        .portada-button-group button:active {
+            transform: scale(0.98);
+        }
+    }
+
+    /* === Botón de Música === */
+    .music-button {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        background-color: var(--bg-music-button);
+        color: var(--text-light);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 4; /* Asegura que esté por encima de todo */
+    }
+
+    .music-button:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+    }
+
+    .music-button span {
+        font-size: 1.2rem;
+    }
+
+    /* === ANIMACIONES === */
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.95) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* === MEDIA QUERIES RESPONSIVAS === */
+    
+    /* Tablets */
+    @media (max-width: 1024px) and (min-width: 769px) {
+        .portada-container {
+            width: 85%;
+            height: 85%;
+        }
+    }
+    
+    /* Móviles grandes */
+    @media (max-width: 768px) {
+        .portada-container {
+            width: 95%;
+            height: 95%;
+            padding: 1.5rem;
+        }
+        
+        .portada-button-group {
+            max-width: 95%;
+        }
+        
+        .music-button {
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+        }
+    }
+    
+    /* Móviles pequeños */
+    @media (max-width: 480px) {
+        .portada-container {
+            width: 98%;
+            height: 98%;
+            padding: 1rem;
+        }
+        
+        .portada-content {
+            gap: 1rem;
+        }
+        
+        .music-button {
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.4rem 0.6rem;
+            font-size: 0.75rem;
+        }
+    }
+    
+    /* Landscape en móviles */
+    @media (orientation: landscape) and (max-height: 600px) {
+        .portada-container {
+            height: 98%;
+            padding: 1rem;
+        }
+        
+        .portada-content {
+            gap: 0.5rem;
+        }
+        
+        .portada-background-illustration {
+            height: 70%;
+        }
+    }
+    
+    /* Pantallas muy pequeñas */
+    @media (max-width: 320px) {
+        .portada-container {
+            padding: 0.75rem;
+        }
+        
+        .portada-button-group {
+            gap: 0.75rem;
+        }
+    }
+    
+    /* Pantallas grandes */
+    @media (min-width: 1400px) {
+        .portada-container {
+            max-width: 1000px;
+            max-height: 1100px;
+        }
+    }
+    
+    /* Modo alto contraste */
+    @media (prefers-contrast: high) {
+        .portada-container {
+            border-width: 6px;
+        }
+        
+        .portada-button-group button {
+            border-width: 3px;
+        }
+    }
+    
+    /* Reducir animaciones si el usuario lo prefiere */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    /* === ESTILOS PARA EL MODAL DE CONTRASEÑA === */
+    .password-modal .swal2-popup {
+        background-color: var(--bg-card) !important;
+        border-radius: 20px !important;
+        border: 3px solid var(--primary-color) !important;
+        box-shadow: 0 15px 40px rgba(80, 50, 30, 0.3) !important;
+        color: var(--text-dark) !important;
+    }
+
+    .password-title {
+        color: var(--primary-color) !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 1.8rem !important;
+    }
+
+    .password-input {
+        background-color: var(--text-light) !important;
+        border: 2px solid var(--accent-color) !important;
+        border-radius: 15px !important;
+        padding: 15px !important;
+        font-size: 1.1rem !important;
+        color: var(--text-dark) !important;
+        text-align: center !important;
+        font-weight: 600 !important;
+        letter-spacing: 2px !important;
+    }
+
+    .password-input:focus {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 3px rgba(231, 111, 81, 0.2) !important;
+        outline: none !important;
+    }
+
+    .swal2-confirm {
+        background-color: var(--primary-color) !important;
+        border-radius: 15px !important;
+        font-weight: 700 !important;
+        font-size: 1.1rem !important;
+        padding: 12px 25px !important;
+        border: none !important;
+    }
+
+    .swal2-cancel {
+        background-color: #6c757d !important;
+        border-radius: 15px !important;
+        font-weight: 700 !important;
+        font-size: 1.1rem !important;
+        padding: 12px 25px !important;
+        border: none !important;
+    }
+
+    .swal2-actions {
+        gap: 15px !important;
+    }

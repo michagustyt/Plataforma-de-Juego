@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Panel - Crónicas Fiscales</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/dashboard.css?v=2">
+<link rel="stylesheet" href="css/dark-mode.css">
+<script src="js/theme.js?v=3"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="dash-wrap">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-logo">Crónicas Fiscales <span>Panel del Godín</span></div>
+    <div class="topbar-right">
+      <button class="tb-btn" id="perfilBtn">Mi cuenta</button>
+      <button class="tb-btn danger" id="logoutBtn">Salir</button>
+    </div>
+  </header>
+
+  <div class="dash-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="user-pill">
+        <div class="avatar"></div>
+        <div class="uname" id="userName">Cargando...</div>
+        <div class="uemail" id="userEmail"></div>
+        <div class="urole">Alumno</div>
+        <div class="uclass" id="userClass" style="font-size:0.85rem; margin-top:8px; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1); color:var(--dark);"></div>
+      </div>
+      <button class="nav-item active" data-section="inicio"><span class="icon"></span> Inicio</button>
+      <button class="nav-item" data-section="actividades"><span class="icon"></span> Actividades</button>
+      <button class="nav-item" data-section="progreso"><span class="icon"></span> Mi Progreso</button>
+      <button class="nav-item" data-section="ranking"><span class="icon">🏆</span> Ranking</button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- ── INICIO ── -->
+      <section id="inicio" class="section active">
+        <h2 class="section-title">Bienvenido, Godín</h2>
+        <div class="stats-row" id="statsRow">
+          <div class="stat-card"><span class="stat-icon"></span><div><div class="stat-label">Nivel alcanzado</div><div class="stat-value" id="statNivel">—</div></div></div>
+          <div class="stat-card yellow"><span class="stat-icon"></span><div><div class="stat-label">Puntaje total</div><div class="stat-value" id="statPuntaje">—</div></div></div>
+          <div class="stat-card green"><span class="stat-icon"></span><div><div class="stat-label">Precisión</div><div class="stat-value" id="statPrecision">—</div></div></div>
+          <div class="stat-card blue"><span class="stat-icon"></span><div><div class="stat-label">Niveles completados</div><div class="stat-value" id="statNiveles">—</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Resumen de Progreso</div>
+          <div id="resumenProgreso" class="loading-msg">Cargando tu progreso...</div>
+        </div>
+        <div class="card" style="margin-top:18px;">
+          <div class="card-title">¡A jugar!</div>
+          <p style="margin-bottom:16px;color:#9c7a5a;">Continúa tu aventura fiscal donde la dejaste.</p>
+          <button class="btn btn-primary" onclick="nav('actividades')">Ir al juego</button>
+        </div>
+      </section>
+
+      <!-- ── RANKING ── -->
+      <section id="ranking" class="section">
+        <h2 class="section-title">Ranking de la Clase</h2>
+        
+        <div class="ranking-banner" id="miRankingBanner">
+          <div>
+            <h3 id="miRankingPos">Cargando...</h3>
+            <p id="miRankingMsg">Cargando tu posición actual...</p>
+          </div>
+          <i class="fas fa-trophy" style="font-size: 2.5rem; opacity: 0.8;"></i>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Top 3</div>
+          <div class="podium-container" id="podiumContainer">
+            <div class="loading-msg" style="width:100%; text-align:center;">Cargando podio...</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:24px;">
+          <div class="card-title">Clasificación General</div>
+          <div class="table-wrap ranking-list">
+            <table>
+              <thead><tr><th style="width:60px;">#</th><th>Alumno</th><th class="centered">Nivel</th><th class="centered">Puntaje</th></tr></thead>
+              <tbody id="rankingTableBody"><tr><td colspan="4" class="loading-msg">Cargando...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ACTIVIDADES ── -->
+      <section id="actividades" class="section">
+        <h2 class="section-title">Actividades del Juego</h2>
+        <div class="niv-grid" id="nivGrid"></div>
+      </section>
+
+      <!-- ── PROGRESO ── -->
+      <section id="progreso" class="section">
+        <h2 class="section-title">Mi Progreso Detallado</h2>
+        <div id="progresoDetalle"></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- MODAL PERFIL -->
+<div class="modal-overlay" id="perfilModal" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" id="cerrarPerfil">✕</button>
+    <div class="modal-title">Mi Perfil</div>
+    <div class="form-grid">
+      <div class="fg"><label>Nombre</label><input type="text" id="pNombre" readonly></div>
+      <div class="fg"><label>Email</label><input type="email" id="pEmail" readonly></div>
+      <div class="fg"><label>Teléfono</label><input type="tel" id="pTelefono" placeholder="Tu teléfono"></div>
+      <div class="fg"><label>Fecha de nacimiento</label><input type="date" id="pFecha"></div>
+      <div class="fg" style="grid-column:1/-1"><label>Bio</label><textarea id="pBio" rows="3" placeholder="Cuéntanos sobre ti"></textarea></div>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-primary" id="guardarPerfil"><i class="fas fa-save"></i> Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/dashboard_alumno.js?v=2"></script>
+</body>
+</html>

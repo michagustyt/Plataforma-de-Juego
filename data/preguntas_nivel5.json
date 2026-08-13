@@ -1,0 +1,162 @@
+[
+  {
+    "id": "p_nivel5_1",
+    "orden": 1,
+    "pregunta": "1.- Los gastos generales se han disparado por setups y logística interna. ¿Qué sistema de costeo implementas?",
+    "opciones": [
+      "Repartir costos usando un porcentaje fijo para todos los productos",
+      "Cargar todos los gastos al producto más vendido",
+      "Implementar Costeo ABC usando inductores: horas de setup, pedidos y traslados",
+      "Traspasar los gastos a la cuenta de gastos de venta"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Un porcentaje fijo no refleja el consumo real de recursos por cada producto o actividad.",
+      "Incorrecto: Cargar costos al producto más vendido distorsiona su rentabilidad real.",
+      "Correcto: El Costeo ABC asigna costos según los inductores reales de cada actividad (setups, pedidos, traslados), dando una imagen más precisa del costo por producto.",
+      "Incorrecto: Traspasar costos de producción a ventas distorsiona el costo de ventas y el margen bruto."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo5/1.jpg"
+  },
+  {
+    "id": "p_nivel5_2",
+    "orden": 2,
+    "pregunta": "2.- Precio=$500, Costo variable=$300, Costos fijos=$200,000. ¿Cuál es el punto de equilibrio?",
+    "opciones": [
+      "Q* = 1,000 unidades",
+      "Q* = 400 unidades",
+      "Q* = 2,000 unidades",
+      "No calcular el punto de equilibrio"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Q* = CF / (PV - CV) = 200,000 / (500 - 300) = 200,000 / 200 = 1,000 unidades.",
+      "Incorrecto: Q* = 200,000 / 200 = 1,000 unidades, no 400.",
+      "Incorrecto: Q* = 200,000 / 200 = 1,000 unidades, no 2,000.",
+      "Incorrecto: El punto de equilibrio es una herramienta fundamental de planeación financiera."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo5/2.jpg"
+  },
+  {
+    "id": "p_nivel5_3",
+    "orden": 3,
+    "pregunta": "3.- El volumen real fue solo 80% del plan presupuestado. ¿Cómo manejas la situación?",
+    "opciones": [
+      "Mover metas a posteriori",
+      "Comparar real vs maestro y culpar al destino",
+      "Eliminar el presupuesto",
+      "Ajustar presupuesto a volumen real y analizar variaciones"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Mover metas después de los hechos no agrega valor analítico.",
+      "Incorrecto: Culpar al destino no identifica las causas reales de la desviación.",
+      "Incorrecto: Eliminar el presupuesto elimina la herramienta de control más importante.",
+      "Correcto: Se aplica el presupuesto flexible: se ajusta al volumen real para aislar variaciones de eficiencia y precio, permitiendo acciones correctivas."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo5/3.png"
+  },
+  {
+    "id": "p_nivel5_4",
+    "orden": 4,
+    "pregunta": "4.- La máquina M2 limita producción a 70 u/h pero la demanda es 100 u/h. ¿Qué estrategia aplicas?",
+    "opciones": [
+      "Hacer inventario de WIP gigantesco",
+      "Subordinar flujo a M2, usar buffers y mejorar set-up",
+      "Vender menos",
+      "Acelerar M1 para 'compensar'"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: Acumular trabajo en proceso (WIP) frente a la restricción no la elimina y eleva costos.",
+      "Correcto: Según la Teoría de las Restricciones (TOC), se debe subordinar el sistema a la restricción (M2), protegerla con buffers y reducir tiempos de set-up para maximizar el throughput.",
+      "Incorrecto: Vender menos reduce ingresos sin resolver la restricción productiva.",
+      "Incorrecto: Acelerar máquinas antes de la restricción solo acumula más WIP frente a M2."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo5/4.png"
+  },
+  {
+    "id": "p_nivel5_5",
+    "orden": 5,
+    "pregunta": "5.- Proveedor ofrece pieza a $45. Costo interno: $40 variables + $10 fijos evitables. ¿Qué decides?",
+    "opciones": [
+      "Subestimar fijos para justificar producción interna",
+      "Decidir por volado",
+      "Mantener interno por orgullo",
+      "Costo relevante interno $50 > $45, conviene comprar externamente"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Subestimar costos fijos evitables lleva a decisiones incorrectas.",
+      "Incorrecto: Las decisiones de make-or-buy requieren análisis de costos relevantes, no azar.",
+      "Incorrecto: El orgullo no es un criterio financiero válido para decisiones de abastecimiento.",
+      "Correcto: El costo relevante interno es $40 variables + $10 fijos evitables = $50, mayor que los $45 del proveedor. Conviene comprar externamente."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo5/5.png"
+  },
+  {
+    "id": "p_nivel5_6",
+    "orden": 6,
+    "pregunta": "6.- Estándar: 2 kg a $20 c/u | Real: 2.2 kg a $18 c/u. ¿Cómo analizas las variaciones?",
+    "opciones": [
+      "Separar variación de precio y eficiencia; actuar en compras y proceso",
+      "Mezclar todas las variaciones y atribuirlas a la mala suerte",
+      "Subir el estándar sin analizar las causas raíz",
+      "Ignorar las variaciones por considerarlas normales"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Variación de precio = (Real $18 - Estándar $20) × 2.2 kg = -$4.40 (favorable). Variación de eficiencia = (2.2 - 2.0) × $20 = $4.00 (desfavorable). Cada una tiene causas y acciones distintas.",
+      "Incorrecto: Mezclar variaciones impide identificar causas y responsables.",
+      "Incorrecto: Ajustar el estándar sin análisis pierde el valor de control del presupuesto.",
+      "Incorrecto: Las variaciones, incluso pequeñas, revelan ineficiencias y oportunidades de mejora."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo5/6.png"
+  },
+  {
+    "id": "p_nivel5_7",
+    "orden": 7,
+    "pregunta": "7.- Los cobros se atrasan 30 días y la nómina vence mañana. ¿Cómo manejas la crisis de liquidez?",
+    "opciones": [
+      "Retrasar el pago de nómina a los empleados",
+      "Ofrecer descuentos agresivos sin calcular el impacto financiero",
+      "Implementar calendario de cobros, línea de crédito y priorizar pagos críticos",
+      "Vender activos productivos clave para obtener liquidez"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Retrasar la nómina genera riesgo legal, desmotivación y sanciones laborales.",
+      "Incorrecto: Descuentos sin análisis pueden sacrificar margen y agravar la situación.",
+      "Correcto: La gestión de crisis de liquidez requiere acelerar cobranza, activar líneas de crédito y priorizar pagos críticos como nómina e impuestos.",
+      "Incorrecto: Vender activos productivos destruye capacidad operativa futura."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo5/7.png"
+  },
+  {
+    "id": "p_nivel5_8",
+    "orden": 8,
+    "pregunta": "8.- Proyecto A: TIR 18%, Proyecto B: TIR 22%, capital limitado. ¿Qué proyecto seleccionas?",
+    "opciones": [
+      "Elegir Proyecto A por preferencia personal o 'cariño'",
+      "Seleccionar Proyecto B por mayor rentabilidad (TIR 22%)",
+      "Intentar ambos proyectos usando deuda costosa y riesgosa",
+      "No realizar ningún proyecto por miedo al riesgo"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: Las decisiones de inversión deben basarse en criterios financieros objetivos, no en preferencias personales.",
+      "Correcto: Con capital limitado, se prioriza el proyecto con mayor TIR (22%) para maximizar el retorno sobre el capital invertido, siempre que supere el costo de capital.",
+      "Incorrecto: Financiar ambos con deuda costosa puede hacer que ninguno sea viable.",
+      "Incorrecto: El miedo al riesgo no es una estrategia de inversión; el análisis financiero existe para cuantificarlo."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo5/8.png"
+  }
+]

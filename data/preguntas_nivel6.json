@@ -1,0 +1,162 @@
+[
+  {
+    "id": "p_nivel6_1",
+    "orden": 1,
+    "pregunta": "1.- Tienes un contrato con 3 obligaciones: software, soporte anual y capacitación. ¿Cómo reconoces ingresos según IFRS 15?",
+    "opciones": [
+      "Reconocer todo al facturar",
+      "Identificar obligaciones, asignar precio independiente y reconocer por tiempo/entrega",
+      "Reconocer al cobrar",
+      "Mezclar en un solo paquete sin notas"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: El ingreso se reconoce cuando se satisface cada obligación de desempeño, no al facturar.",
+      "Correcto: IFRS 15 exige identificar cada obligación de desempeño, asignar el precio de transacción de forma independiente y reconocer el ingreso conforme se satisface cada obligación (en un punto en el tiempo o a lo largo del tiempo).",
+      "Incorrecto: El método de efectivo no aplica bajo IFRS 15 para este tipo de contratos.",
+      "Incorrecto: Mezclar obligaciones distintas en un paquete viola los principios de IFRS 15."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo6/1.jpg"
+  },
+  {
+    "id": "p_nivel6_2",
+    "orden": 2,
+    "pregunta": "2.- Contrato de arrendamiento con opción de extensión razonablemente cierta de ejercerse. ¿Cómo lo contabilizas?",
+    "opciones": [
+      "Ignorar la extensión",
+      "Llevarlo como gasto mensual",
+      "Incluir extensión en plazo del ROU y medir pasivo con tasa incremental",
+      "Capitalizar depósito como ingreso"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Si la opción de extensión es razonablemente cierta, debe incluirse en el plazo del arrendamiento.",
+      "Incorrecto: Bajo IFRS 16, los arrendamientos de largo plazo no pueden llevarse solo como gasto.",
+      "Correcto: Bajo IFRS 16, si la extensión es razonablemente cierta, se incluye en el plazo del activo de derecho de uso (ROU) y el pasivo se mide con la tasa de endeudamiento incremental.",
+      "Incorrecto: El depósito es un activo financiero (cuenta por cobrar), no un ingreso."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo6/2.jpg"
+  },
+  {
+    "id": "p_nivel6_3",
+    "orden": 3,
+    "pregunta": "3.- Una unidad generadora de efectivo muestra indicios de deterioro. ¿Qué procede según IAS 36?",
+    "opciones": [
+      "Rebajar vida útil 'para que cuadre'",
+      "Test de impairment: valor en uso vs valor razonable; reconocer pérdida si procede",
+      "Esperar al siguiente cierre",
+      "Revaluar al alza sin base"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: Reducir la vida útil arbitrariamente es una manipulación contable.",
+      "Correcto: Bajo IAS 36, al detectar indicios de deterioro se realiza el test: se compara el valor en libros contra el importe recuperable (el mayor entre valor en uso y valor razonable menos costos de venta). Si el valor en libros es mayor, se reconoce la pérdida por deterioro.",
+      "Incorrecto: IAS 36 exige realizar el test cuando existen indicios; no puede diferirse.",
+      "Incorrecto: Revaluar al alza sin base objetiva viola IAS 36 y IAS 16."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo6/3.jpg"
+  },
+  {
+    "id": "p_nivel6_4",
+    "orden": 4,
+    "pregunta": "4.- Una cuenta por cobrar muestra aumento significativo en riesgo crediticio. ¿Cómo procedes según IFRS 9?",
+    "opciones": [
+      "Mantener Stage 1",
+      "Castigar de inmediato sin análisis",
+      "Vender la cartera a un tercero",
+      "Pasar de Stage 1 a Stage 2; pérdida crediticia esperada a vida media"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Si el riesgo ha aumentado significativamente, ya no corresponde Stage 1.",
+      "Incorrecto: El castigo directo sin análisis no sigue el modelo ECL de IFRS 9.",
+      "Incorrecto: Vender la cartera es una decisión estratégica, no el tratamiento contable requerido.",
+      "Correcto: Bajo IFRS 9, un aumento significativo en riesgo crediticio migra la cuenta al Stage 2, donde la provisión se calcula con la pérdida crediticia esperada a lo largo de toda la vida del instrumento."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo6/4.jpg"
+  },
+  {
+    "id": "p_nivel6_5",
+    "orden": 5,
+    "pregunta": "5.- Filial funcional en USD, matriz en MXN. ¿Cómo conviertes los estados financieros según IAS 21?",
+    "opciones": [
+      "Traducir activos/pasivos al tipo de cierre; resultados al tipo promedio; diferencias a OCI",
+      "Tipo spot para todo",
+      "Promedio anual hasta para el balance",
+      "Re-expresar a 'tipo bonito'"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Bajo IAS 21, activos y pasivos se convierten al tipo de cambio de cierre; ingresos y gastos al tipo promedio del período; las diferencias de conversión se reconocen en Otro Resultado Integral (OCI).",
+      "Incorrecto: El tipo spot solo aplica para transacciones individuales, no para la conversión de estados financieros.",
+      "Incorrecto: Usar el tipo promedio para el balance mezcla momentos de medición distintos.",
+      "Incorrecto: No existe el 'tipo bonito'; IAS 21 especifica tipos de cambio precisos."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo6/5.jpg"
+  },
+  {
+    "id": "p_nivel6_6",
+    "orden": 6,
+    "pregunta": "6.- La matriz posee 48% pero controla decisiones clave vía acuerdos. ¿Cómo se determina la consolidación?",
+    "opciones": [
+      "Equity method por debajo de 50% siempre",
+      "No reconocer porque 'no llega al 51%'",
+      "Proforma secreta",
+      "Consolidar por control, no solo por porcentaje"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: El método de participación aplica para influencia significativa, no para control; el control no requiere 50%+ si se ejerce de otras formas.",
+      "Incorrecto: IFRS 10 define control por poder, exposición a rendimientos variables y capacidad de usarlo, no por porcentaje mínimo.",
+      "Incorrecto: No existe la 'proforma secreta' como tratamiento contable.",
+      "Correcto: Bajo IFRS 10, el control es el principio rector. Si la matriz controla las decisiones relevantes de la entidad, debe consolidar independientemente del porcentaje de propiedad."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo6/6.jpg"
+  },
+  {
+    "id": "p_nivel6_7",
+    "orden": 7,
+    "pregunta": "7.- Existe una demanda legal probable y cuantificable. ¿Cuál es el tratamiento según IAS 37?",
+    "opciones": [
+      "Reconocer provisión y revelar incertidumbre",
+      "Revelar sin reconocer",
+      "No hacer nada",
+      "Reconocer por el doble 'por si acaso'"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Bajo IAS 37, cuando una obligación es probable y puede estimarse con fiabilidad, se reconoce una provisión por la mejor estimación del desembolso requerido, revelando la incertidumbre en notas.",
+      "Incorrecto: Si es probable y cuantificable, debe reconocerse; solo si es posible (no probable) se revela sin reconocer.",
+      "Incorrecto: Ignorar obligaciones probables viola IAS 37 y distorsiona el pasivo.",
+      "Incorrecto: La provisión debe ser la mejor estimación, no un exceso arbitrario."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo6/7.jpg"
+  },
+  {
+    "id": "p_nivel6_8",
+    "orden": 8,
+    "pregunta": "8.- Plan de beneficio definido pequeño, pero con obligación actuarial. ¿Cómo se contabiliza según IAS 19?",
+    "opciones": [
+      "Tratar como contribución definida",
+      "Medir obligación actuarial, tasa de descuento; OCI por re-mediciones",
+      "Ignorar por 'tamaño'",
+      "Registrar solo pagos"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: Un plan de beneficio definido tiene características actuariales distintas a uno de contribución definida; no pueden tratarse igual.",
+      "Correcto: Bajo IAS 19, la obligación por beneficio definido se mide actuarialmente con una tasa de descuento de bonos corporativos de alta calidad; las re-mediciones se reconocen en OCI.",
+      "Incorrecto: El tamaño no exime de aplicar IAS 19 cuando existe una obligación actuarial.",
+      "Incorrecto: Registrar solo los pagos ignora la obligación devengada futura."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo6/8.jpg"
+  }
+]

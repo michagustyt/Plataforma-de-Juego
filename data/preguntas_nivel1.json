@@ -1,0 +1,202 @@
+[
+  {
+    "id": "p_nivel1_1",
+    "orden": 1,
+    "pregunta": "1.- La empresa compra un flamenco rosa de plástico para decorar la oficina. ¿Cómo se registra contablemente?",
+    "opciones": [
+      "Activo Fijo.",
+      "Gasto de Decoración.",
+      "Activo Biológico No Circulante.",
+      "Tirar el recibo y hacerse guaje."
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: El flamenco es un bien tangible con vida útil mayor a un año, se clasifica como Activo Fijo.",
+      "Incorrecto: Un gasto de decoración aplica para artículos de consumo inmediato, no para bienes con vida útil prolongada.",
+      "Incorrecto: Los activos biológicos son organismos vivos (ganado, plantas), no decoraciones de plástico.",
+      "Incorrecto: Tirar el recibo genera problemas fiscales y contables."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/flamenco.jpg"
+  },
+  {
+    "id": "p_nivel1_2",
+    "orden": 2,
+    "pregunta": "2.- El jefe paga una cena elegante, pero fue solo. ¿Cómo se registra?",
+    "opciones": [
+      "Gasto de Venta (deducible)",
+      "Llamar al restaurante",
+      "Gasto No Deducible",
+      "Tirar la factura y decir que se perdió"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Para ser deducible, los gastos de representación deben tener sustancia de negocio y estar correctamente documentados.",
+      "Incorrecto: Llamar al restaurante no resuelve el problema fiscal.",
+      "Correcto: Una cena del jefe en solitario sin propósito de negocio comprobado es un Gasto No Deducible.",
+      "Incorrecto: Tirar la factura no elimina la obligación fiscal y puede considerarse evasión."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/auto_jefe.jpg"
+  },
+  {
+    "id": "p_nivel1_3",
+    "orden": 3,
+    "pregunta": "3.- Se contrata a un chamán para limpiar la energía negativa de la oficina. ¿Cómo se registra?",
+    "opciones": [
+      "Servicios Profesionales",
+      "Mantenimiento y Conservación",
+      "Gasto No Deducible",
+      "Cooperacha sin registrar"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Los servicios profesionales deben ser estrictamente indispensables para la actividad económica de la empresa.",
+      "Incorrecto: Mantenimiento aplica a bienes tangibles, no a energías.",
+      "Correcto: El SAT no reconoce los servicios de un chamán como gastos estrictamente indispensables; es un Gasto No Deducible.",
+      "Incorrecto: No registrar gastos es una práctica irregular que puede acarrear sanciones."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/chaman.jpg"
+  },
+  {
+    "id": "p_nivel1_4",
+    "orden": 4,
+    "pregunta": "4.- El compadre te da una servilleta firmada por una deuda de $5,000. ¿Qué haces?",
+    "opciones": [
+      "Dudores Diversos",
+      "Llamar al compadre",
+      "Enmarcarla como arte",
+      "Ignorarla"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Una servilleta no es un documento legal ni un CFDI; no puede registrarse como cuenta por cobrar válida.",
+      "Incorrecto: Llamar al compadre es un paso personal, no una acción contable.",
+      "Incorrecto: Enmarcarla puede ser creativo, pero no resuelve el problema contable.",
+      "Correcto: Una servilleta no tiene validez jurídica ni fiscal en México; debe ignorarse contablemente y buscar un documento formal."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/servilleta.jpg"
+  },
+  {
+    "id": "p_nivel1_5",
+    "orden": 5,
+    "pregunta": "5.- ¿Son válidos los post-it como comprobantes fiscales?",
+    "opciones": [
+      "No, se necesita CFDI",
+      "Sí, con firma de Brenda",
+      "Sí, pero solo los amarillos",
+      "Pasarlos a Excel bien bonito"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: En México, el único comprobante fiscal válido es el CFDI timbrado por el SAT. Los post-it no tienen ninguna validez fiscal.",
+      "Incorrecto: Ninguna firma interna convierte un post-it en comprobante fiscal válido.",
+      "Incorrecto: El color del post-it no tiene relevancia fiscal alguna.",
+      "Incorrecto: Digitalizar información inválida no la convierte en válida."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/post-it.jpg"
+  },
+  {
+    "id": "p_nivel1_6",
+    "orden": 6,
+    "pregunta": "6.- La empresa compra 100 kg de café gourmet para el personal. ¿Cómo se registra?",
+    "opciones": [
+      "Gasto de oficina",
+      "Inventario",
+      "Preguntar al jefe",
+      "Llevarte un kilo a casa"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: El café para consumo del personal es un gasto de oficina o consumo interno, no un bien destinado a la venta.",
+      "Incorrecto: El inventario registra bienes destinados a la venta o producción, no al consumo interno.",
+      "Incorrecto: La decisión contable no depende de la opinión del jefe sino de la naturaleza de la transacción.",
+      "Incorrecto: Llevarte insumos de la empresa constituye un faltante de inventario o desvío de recursos."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/cafe.jpg"
+  },
+  {
+    "id": "p_nivel1_7",
+    "orden": 7,
+    "pregunta": "7.- ¿La multa de la factura de la luz es deducible?",
+    "opciones": [
+      "No deducible",
+      "Sí, solo el consumo",
+      "Pagar con la tanda",
+      "Ocultar el recargo"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: El consumo de electricidad sí es deducible; solo la multa y recargos no lo son.",
+      "Correcto: El consumo de electricidad es un gasto deducible; las multas y recargos por pago tardío son no deducibles según el SAT.",
+      "Incorrecto: Pagar con la tanda no es una práctica contable reconocida.",
+      "Incorrecto: Ocultar recargos es una práctica fraudulenta con consecuencias legales."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/factura_luz.jpg"
+  },
+  {
+    "id": "p_nivel1_8",
+    "orden": 8,
+    "pregunta": "8.- La empresa compra una laptop nueva. ¿Cómo se clasifica?",
+    "opciones": [
+      "Gasto personal del jefe",
+      "Instalar software para justificar",
+      "Pedirla al junior",
+      "Equipo de Cómputo (Activo Fijo)"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Los bienes de la empresa no son de uso personal de los directivos.",
+      "Incorrecto: Instalar software no cambia la clasificación contable del hardware.",
+      "Incorrecto: Asignarla al junior no determina su clasificación contable.",
+      "Correcto: Una laptop es un bien tangible con vida útil mayor a un año, se clasifica como Equipo de Cómputo dentro del Activo Fijo."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/laptop.jpg"
+  },
+  {
+    "id": "p_nivel1_9",
+    "orden": 9,
+    "pregunta": "9.- Se paga la reparación del auto del jefe. ¿Cómo se registra?",
+    "opciones": [
+      "Preguntarle a Rogelio",
+      "Registrar sin preguntar",
+      "Verificar si es activo de la empresa",
+      "Preguntar el chisme en recepción"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: La decisión contable no depende de la opinión del jefe sino de la naturaleza del activo.",
+      "Incorrecto: Registrar sin verificar puede generar un gasto no deducible o un error contable.",
+      "Correcto: Primero hay que verificar si el auto está registrado como activo de la empresa; si no lo es, la reparación es un Gasto No Deducible.",
+      "Incorrecto: El chisme en recepción no es una fuente de información contable válida."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/auto_jefe.jpg"
+  },
+  {
+    "id": "p_nivel1_10",
+    "orden": 10,
+    "pregunta": "10.- Se contrata TV de paga para la oficina. ¿Se considera deducible?",
+    "opciones": [
+      "Sí, para estar informados",
+      "Es para la sala de juntas",
+      "No es indispensable, no deducible",
+      "Para ver el partido"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: El SAT exige que el gasto sea estrictamente indispensable para la actividad económica.",
+      "Incorrecto: El uso en sala de juntas no garantiza que sea indispensable para el giro del negocio.",
+      "Correcto: La TV de paga generalmente no es indispensable para la operación del negocio, por lo que es un Gasto No Deducible.",
+      "Incorrecto: Ver el partido definitivamente no es un propósito de negocio."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo1/tv_paga.jpg"
+  }
+]

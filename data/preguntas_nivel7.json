@@ -1,0 +1,202 @@
+[
+  {
+    "id": "p_nivel7_1",
+    "orden": 1,
+    "pregunta": "1.- Necesitas implementar un pipeline ETL para procesar CFDI hacia un data warehouse. ¿Cuál es el enfoque correcto?",
+    "opciones": [
+      "Pegar todo a una hoja gigante",
+      "Quitar validaciones para ir más rápido",
+      "Validar timbre, UUID, método de pago y esquema, controlar duplicados y trazabilidad",
+      "Cargar PDF porque 'se ve igualito'"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Una hoja sin estructura ETL no escala ni garantiza calidad de datos.",
+      "Incorrecto: Quitar validaciones genera datos corruptos e inconsistencias fiscales.",
+      "Correcto: Un pipeline ETL robusto para CFDI debe validar timbre SAT, UUID único, método/forma de pago, cumplimiento de esquema XSD, control de duplicados y trazabilidad completa del proceso.",
+      "Incorrecto: El PDF es solo representación visual; el documento fiscal y fuente de datos es el XML timbrado."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/1.png"
+  },
+  {
+    "id": "p_nivel7_2",
+    "orden": 2,
+    "pregunta": "2.- Los campos clave tienen valores nulos y formatos inconsistentes. ¿Cómo aseguras la calidad de datos?",
+    "opciones": [
+      "Reglas de calidad: tipos estrictos, catálogos, pruebas unitarias y alertas",
+      "'Autocorrección' que inventa valores",
+      "Dejar nulos y rezar",
+      "Arreglar a mano cada mes"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: La calidad de datos se garantiza con reglas de validación estrictas (tipos de dato, rangos), catálogos de referencia, pruebas unitarias automatizadas y alertas para detectar anomalías en tiempo real.",
+      "Incorrecto: Inventar valores para llenar nulos introduce datos falsos que comprometen la integridad.",
+      "Incorrecto: Los nulos sin tratar generan errores en reportes y decisiones incorrectas.",
+      "Incorrecto: La corrección manual no escala y es propensa a errores humanos."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/2.png"
+  },
+  {
+    "id": "p_nivel7_3",
+    "orden": 3,
+    "pregunta": "3.- La directiva solicita margen por cliente en tiempo real. ¿Cómo implementas el dashboard?",
+    "opciones": [
+      "Un gráfico bonito sin filtros",
+      "CSV pegado cada viernes",
+      "Modelo semántico con hechos y dimensiones, KPIs versionados y seguridad por rol",
+      "Publicar el dashboard con acceso público"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Un gráfico sin modelo de datos subyacente no garantiza precisión ni escalabilidad.",
+      "Incorrecto: Un CSV semanal no es 'tiempo real'; introduce latencia y riesgo de errores manuales.",
+      "Correcto: Un dashboard de margen en tiempo real requiere modelo semántico (hechos, dimensiones), KPIs versionados y controlados, y seguridad por rol para proteger datos sensibles.",
+      "Incorrecto: Datos financieros con acceso público violan la confidencialidad y regulaciones."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/3.png"
+  },
+  {
+    "id": "p_nivel7_4",
+    "orden": 4,
+    "pregunta": "4.- ¿Cómo automatizas la conciliación bancaria entre el banco y el ERP?",
+    "opciones": [
+      "Conciliar 'cuando cuadre solo'",
+      "Conciliar a ojo",
+      "Solo por monto exacto",
+      "Algoritmos por monto, fecha, referencia y fuzzy matching con revisión humana"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: Esperar a que cuadre solo no es una estrategia de conciliación.",
+      "Incorrecto: La conciliación visual no escala para volúmenes altos y es propensa a errores.",
+      "Incorrecto: La conciliación solo por monto exacto falla ante diferencias de redondeo o fechas de valor.",
+      "Correcto: La automatización de conciliación bancaria usa múltiples criterios (monto, fecha, referencia, descripción) con algoritmos de fuzzy matching para casos ambiguos, más revisión humana de excepciones."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/4.png"
+  },
+  {
+    "id": "p_nivel7_5",
+    "orden": 5,
+    "pregunta": "5.- Reportes acceden a datos personales sin anonimizar. ¿Cómo manejas la protección?",
+    "opciones": [
+      "Copiar base completa al escritorio",
+      "Compartir por correo 'urgente'",
+      "Enmascaramiento, minimización, logs, principio de menor privilegio",
+      "Subir a nube pública sin restricciones"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Copiar bases de datos completas al escritorio es una violación grave de seguridad.",
+      "Incorrecto: Compartir datos personales por correo sin cifrado viola la Ley Federal de Protección de Datos Personales.",
+      "Correcto: La protección de datos personales requiere enmascaramiento (pseudonimización), minimización de datos, bitácoras de acceso y el principio de menor privilegio (acceso mínimo necesario).",
+      "Incorrecto: Subir datos personales a nube pública viola la ley y expone a la empresa a sanciones graves."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/5.png"
+  },
+  {
+    "id": "p_nivel7_6",
+    "orden": 6,
+    "pregunta": "6.- Alto volumen de pólizas de nómina estándar. ¿Cómo automatizas el proceso?",
+    "opciones": [
+      "RPA con validaciones contables y bitácora de excepción",
+      "Contratar 5 capturistas nocturnos",
+      "Macros sin control",
+      "Incumplir requisitos legales de contabilidad"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: La automatización robótica de procesos (RPA) es ideal para pólizas repetitivas de nómina; debe incluir validaciones contables (cuadre, catálogos) y bitácora de excepciones para revisión.",
+      "Incorrecto: Los capturistas nocturnos elevan costos y errores humanos sin resolver el problema de escala.",
+      "Incorrecto: Las macros sin control de versiones, auditoría ni validaciones son frágiles y riesgosas.",
+      "Incorrecto: Incumplir requisitos legales de contabilidad electrónica genera sanciones del SAT."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/6.png"
+  },
+  {
+    "id": "p_nivel7_7",
+    "orden": 7,
+    "pregunta": "7.- ¿Cómo implementas detección de facturas con RFC en lista negra del SAT?",
+    "opciones": [
+      "Revisar manual cada trimestre",
+      "Investigar lista 69-B, bloquear acreditamiento y disparar alerta",
+      "Ignorar hasta auditoría",
+      "'Whitelist' para proveedores amigos"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: La revisión trimestral es tardía; los contribuyentes en lista 69-B generan IVA no acreditable desde la publicación.",
+      "Correcto: Debe consultarse la lista 69-B del SAT en tiempo real o periódicamente, bloquearse el acreditamiento de IVA de proveedores listados y dispararse alertas para revisión y corrección.",
+      "Incorrecto: Ignorar la lista 69-B hasta auditoría puede derivar en créditos fiscales improcedentes y multas.",
+      "Incorrecto: Una 'whitelist' sin consulta a la lista oficial no cumple con las obligaciones fiscales."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/7.png"
+  },
+  {
+    "id": "p_nivel7_8",
+    "orden": 8,
+    "pregunta": "8.- ¿Cómo garantizas la trazabilidad de cambios en sistemas financieros?",
+    "opciones": [
+      "Auditoría de campo: quién, cuándo, antes/después; approvals",
+      "Registro libre con confianza",
+      "Cambios directos en BD en producción",
+      "Bitácora en post-it"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: La trazabilidad requiere logs de auditoría que capturen quién hizo el cambio, cuándo, el valor anterior y el nuevo, con flujos de aprobación documentados.",
+      "Incorrecto: El registro informal no cumple con requisitos de auditoría ni control interno.",
+      "Incorrecto: Los cambios directos en producción sin ambiente de pruebas ni aprobaciones son una práctica de altísimo riesgo.",
+      "Incorrecto: Los post-its no son un medio de trazabilidad auditable ni duradero."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/8.png"
+  },
+  {
+    "id": "p_nivel7_9",
+    "orden": 9,
+    "pregunta": "9.- Quieren predecir morosidad a 60 días. ¿Qué enfoque usas?",
+    "opciones": [
+      "Regresión con 2 datos",
+      "Intuición del vendedor estrella",
+      "Modelo supervisado con variables históricas y validación",
+      "Tirar una moneda"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Un modelo de regresión con solo 2 datos no es estadísticamente válido.",
+      "Incorrecto: La intuición no es escalable ni consistente para predicciones masivas.",
+      "Correcto: La predicción de morosidad requiere un modelo supervisado (logística, gradient boosting) entrenado con variables históricas relevantes (días de atraso previos, monto, sector) y validado con métricas como AUC-ROC.",
+      "Incorrecto: El azar no es una metodología de predicción."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/9.png"
+  },
+  {
+    "id": "p_nivel7_10",
+    "orden": 10,
+    "pregunta": "10.- Falla el servidor del ERP el último día del mes. ¿Cómo respondes?",
+    "opciones": [
+      "Backup único en el mismo servidor",
+      "DRP probado, backups 3-2-1, RTO/RPO definidos y failover",
+      "Llamar al técnico a 'soplarle'",
+      "Rezar al santo de la nube"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: Un backup en el mismo servidor fallido no sirve; el riesgo es idéntico.",
+      "Correcto: Un Plan de Recuperación ante Desastres (DRP) probado con backups 3-2-1 (3 copias, 2 medios distintos, 1 offsite), RTO y RPO definidos, y failover automático garantizan la continuidad operativa.",
+      "Incorrecto: 'Soplarle' al servidor no es un procedimiento de recuperación reconocido.",
+      "Incorrecto: La resiliencia de sistemas requiere planificación técnica, no intervención divina."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo7/10.png"
+  }
+]

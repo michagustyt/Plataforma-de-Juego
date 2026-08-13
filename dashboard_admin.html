@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Admin - Crónicas Fiscales</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/dark-mode.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="js/theme.js?v=3"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Banner de emulación -->
+<div id="emuBanner" style="display:none;" class="emu-banner">
+  <div class="emu-banner-left">
+    <span class="emu-banner-icon">👁️</span>
+    <span>Viendo como: <strong id="emuRolLabel"></strong></span>
+  </div>
+  <button class="emu-back-btn" id="btnVolverAdmin">⬅ Volver al Admin</button>
+</div>
+<div class="dash-wrap">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-logo">Crónicas Fiscales <span>Panel Administrador</span></div>
+    <div class="topbar-right">
+      <button class="tb-btn" id="perfilBtn">Mi cuenta</button>
+      <button class="tb-btn danger" id="logoutBtn">Salir</button>
+    </div>
+  </header>
+
+  <div class="dash-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="user-pill">
+        <div class="avatar"></div>
+        <div class="uname" id="userName">Cargando...</div>
+        <div class="uemail" id="userEmail"></div>
+        <div class="urole">Admin</div>
+      </div>
+      <button class="nav-item active" data-section="inicio"><span class="icon"></span> Inicio</button>
+      <button class="nav-item" data-section="docentes"><span class="icon"></span> Docentes</button>
+      <button class="nav-item" data-section="clases"><span class="icon"></span> Clases</button>
+      <button class="nav-item" data-section="alumnos"><span class="icon"></span> Alumnos</button>
+      <button class="nav-item" data-section="reportes"><span class="icon"></span> Reportes</button>
+
+      <!-- ── SWITCH DE MODO ── -->
+      <div class="nav-separator"></div>
+      <button class="nav-item" id="btnModoDocente"><span class="icon"><i class="fas fa-chalkboard-teacher"></i></span> Modo Docente</button>
+      <button class="nav-item" id="btnModoAlumno"><span class="icon"><i class="fas fa-user-graduate"></i></span> Modo Alumno</button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- ── INICIO ── -->
+      <section id="inicio" class="section active">
+        <h2 class="section-title">Panel de Administración</h2>
+        <div class="stats-row">
+          <div class="stat-card"><span class="stat-icon">👥</span><div><div class="stat-label">Total usuarios</div><div class="stat-value" id="stTotal">—</div></div></div>
+          <div class="stat-card yellow"><span class="stat-icon"></span><div><div class="stat-label">Docentes</div><div class="stat-value" id="stDocentes">—</div></div></div>
+          <div class="stat-card green"><span class="stat-icon"></span><div><div class="stat-label">Alumnos</div><div class="stat-value" id="stAlumnos">—</div></div></div>
+          <div class="stat-card blue"><span class="stat-icon"></span><div><div class="stat-label">Clases</div><div class="stat-value" id="stClases">—</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Top alumnos por puntaje</div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>#</th><th>Alumno</th><th>Docente</th><th class="centered">Nivel</th><th class="centered">Puntaje</th></tr></thead>
+            <tbody id="topBody"><tr><td colspan="5" class="loading-msg">Cargando...</td></tr></tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <!-- ── DOCENTES ── -->
+      <section id="docentes" class="section">
+        <h2 class="section-title">Gestión de Docentes</h2>
+        <div class="action-bar">
+          <button class="btn btn-success" id="btnNuevoDocente"><i class="fas fa-plus"></i> Nuevo docente</button>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Nombre</th><th>Email</th><th class="centered">Alumnos</th><th class="centered">Clases</th><th class="centered">Estado</th><th class="centered">Acciones</th></tr></thead>
+          <tbody id="docentesBody"><tr><td colspan="5" class="loading-msg">Cargando...</td></tr></tbody>
+        </table></div>
+      </section>
+
+      <!-- ── CLASES ── -->
+      <section id="clases" class="section">
+        <h2 class="section-title">Gestión de Clases</h2>
+        <div class="action-bar">
+          <button class="btn btn-success" id="btnNuevaClase"><i class="fas fa-plus"></i> Nueva clase</button>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Clase</th><th>Docente</th><th class="centered">Alumnos</th><th>Descripción</th><th>Acciones</th></tr></thead>
+          <tbody id="clasesBody"><tr><td colspan="5" class="loading-msg">Cargando...</td></tr></tbody>
+        </table></div>
+      </section>
+
+      <!-- ── ALUMNOS ── -->
+      <section id="alumnos" class="section">
+        <h2 class="section-title">Gestión de Alumnos</h2>
+        <div class="action-bar">
+          <button class="btn btn-success" id="btnNuevoAlumno"><i class="fas fa-plus"></i> Nuevo alumno</button>
+          <button class="btn btn-info"    id="btnAsignarAlumno">🔗 Asignar a clase</button>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Nombre</th><th>Email</th><th>Docente</th><th>Clase</th><th class="centered">Estado</th><th class="centered">Acciones</th></tr></thead>
+          <tbody id="alumnosBody"><tr><td colspan="5" class="loading-msg">Cargando...</td></tr></tbody>
+        </table></div>
+      </section>
+
+      <!-- ── REPORTES ── -->
+      <section id="reportes" class="section">
+        <h2 class="section-title">Reporte General</h2>
+        <div class="action-bar">
+          <button class="btn btn-primary" id="btnPDF"><i class="fas fa-file-pdf"></i> Generar PDF</button>
+          <button class="btn btn-accent"  id="btnRefresh"><i class="fas fa-sync-alt"></i> Actualizar</button>
+        </div>
+        <div class="card"><div class="card-title">📋 Progreso de todos los alumnos</div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Alumno</th><th>Docente</th><th class="centered">Nivel</th><th class="centered">Puntaje</th><th class="centered">Precisión</th><th>Última act.</th></tr></thead>
+            <tbody id="reporteBody"><tr><td colspan="6" class="loading-msg">Cargando...</td></tr></tbody>
+          </table></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ══ MODAL PERFIL ══ -->
+<div class="modal-overlay" id="perfilModal" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" id="cerrarPerfil">✕</button>
+    <div class="modal-title">Mi Perfil</div>
+    <div class="form-grid two">
+      <div class="fg"><label>Nombre</label><input type="text" id="pNombre" readonly></div>
+      <div class="fg"><label>Email</label><input type="email" id="pEmail" readonly></div>
+    </div>
+    <div class="form-footer"><button class="btn btn-accent" onclick="document.getElementById('perfilModal').style.display='none'">Cerrar</button></div>
+  </div>
+</div>
+
+<!-- ══ MODAL NUEVO DOCENTE ══ -->
+<div class="modal-overlay" id="modalDocente" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal('modalDocente')">✕</button>
+    <div class="modal-title">Nuevo Docente</div>
+    <div class="form-grid">
+      <div class="fg"><label>Nombre completo *</label><input type="text" id="docNombre" placeholder="Nombre del docente"></div>
+      <div class="fg"><label>Email *</label><input type="email" id="docEmail" placeholder="correo@ejemplo.com"></div>
+      <div class="fg"><label>Contraseña *</label><input type="password" id="docPass" placeholder="Contraseña inicial"></div>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-accent" onclick="cerrarModal('modalDocente')">Cancelar</button>
+      <button class="btn btn-success" id="guardarDocente">✔ Crear</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL NUEVA CLASE ══ -->
+<div class="modal-overlay" id="modalClase" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal('modalClase')">✕</button>
+    <div class="modal-title">Nueva Clase</div>
+    <div class="form-grid">
+      <div class="fg"><label>Nombre de la clase *</label><input type="text" id="claseNombre" placeholder="Ej: Grupo A - Contabilidad"></div>
+      <div class="fg"><label>Docente asignado *</label><select id="claseDocente"><option value="">Cargando...</option></select></div>
+      <div class="fg"><label>Descripción</label><textarea id="claseDesc" rows="2"></textarea></div>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-accent" onclick="cerrarModal('modalClase')">Cancelar</button>
+      <button class="btn btn-success" id="guardarClase">✔ Crear Clase</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL NUEVO ALUMNO ══ -->
+<div class="modal-overlay" id="modalAlumno" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal('modalAlumno')">✕</button>
+    <div class="modal-title">Nuevo Alumno</div>
+    <div class="form-grid two">
+      <div class="fg"><label>Nombre *</label><input type="text" id="alNombre" placeholder="Nombre"></div>
+      <div class="fg"><label>Email *</label><input type="email" id="alEmail" placeholder="correo@ejemplo.com"></div>
+      <div class="fg"><label>Contraseña *</label><input type="password" id="alPass" placeholder="Contraseña inicial"></div>
+      <div class="fg"><label>Clase</label><select id="alClase"><option value="">— Sin asignar —</option></select></div>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-accent" onclick="cerrarModal('modalAlumno')">Cancelar</button>
+      <button class="btn btn-success" id="guardarAlumno">✔ Crear</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL ASIGNAR ALUMNO ══ -->
+<div class="modal-overlay" id="modalAsignar" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal('modalAsignar')">✕</button>
+    <div class="modal-title">🔗 Asignar Alumno a Clase</div>
+    <div class="form-grid">
+      <div class="fg"><label>Alumno sin clase *</label><select id="asAlumno"><option value="">Cargando...</option></select></div>
+      <div class="fg"><label>Clase *</label><select id="asClase"><option value="">— Selecciona —</option></select></div>
+    </div>
+    <div class="form-footer">
+      <button class="btn btn-accent" onclick="cerrarModal('modalAsignar')">Cancelar</button>
+      <button class="btn btn-success" id="guardarAsignar">✔ Asignar</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/dashboard_admin.js?v=2"></script>
+</body>
+</html>

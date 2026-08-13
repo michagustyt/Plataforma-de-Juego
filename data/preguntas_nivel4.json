@@ -1,0 +1,162 @@
+[
+  {
+    "id": "p_nivel4_1",
+    "orden": 1,
+    "pregunta": "1.- El auditor solicita la carta de representación firmada por la administración. ¿Qué se hace?",
+    "opciones": [
+      "Firmar una hoja en blanco 'para que el auditor la llene'",
+      "Adjuntar el reglamento interno",
+      "Elaborar carta firmada por administración, con alcance, limitaciones y confirmaciones clave",
+      "Enviar un correo informal diciendo 'todo bien'"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Firmar hojas en blanco es una práctica peligrosa e inapropiada.",
+      "Incorrecto: El reglamento interno no sustituye la carta de representación que exige el auditor.",
+      "Correcto: La carta de representación es un documento formal firmado por la dirección que confirma la veracidad de la información proporcionada al auditor, incluyendo alcance y limitaciones.",
+      "Incorrecto: Un correo informal no tiene el valor legal ni técnico de una carta de representación."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo4/1.jpg"
+  },
+  {
+    "id": "p_nivel4_2",
+    "orden": 2,
+    "pregunta": "2.- Se detecta una debilidad en el control de compras durante la auditoría. ¿Qué procede?",
+    "opciones": [
+      "Aceptar mayor muestra sustantiva y documentar remediación del control",
+      "Discutir 4 horas para reducir la muestra",
+      "Cambiar el flujo del proceso en plena auditoría",
+      "Esconder facturas problemáticas en 'varios'"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Al detectar una deficiencia de control, el auditor amplía la muestra sustantiva para compensar la falta de confianza en los controles, y debe documentarse el plan de remediación.",
+      "Incorrecto: Discutir no cambia la naturaleza de la debilidad detectada.",
+      "Incorrecto: Cambiar procesos en plena auditoría no remedia la debilidad para el período auditado.",
+      "Incorrecto: Ocultar documentos es una práctica fraudulenta con consecuencias legales graves."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo4/2.jpg"
+  },
+  {
+    "id": "p_nivel4_3",
+    "orden": 3,
+    "pregunta": "3.- Hay diferencias en confirmaciones de clientes por notas de crédito no registradas. ¿Qué se hace?",
+    "opciones": [
+      "Registrar ingresos extra para que cuadre",
+      "Conciliar contra NC pendientes, registrar ajustes y preparar cédula de diferencias",
+      "Reenviar confirmaciones hasta que coincidan",
+      "Ignorar porque 'el cliente siempre se equivoca'"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: Registrar ingresos ficticios para cuadrar saldos es manipulación contable.",
+      "Correcto: Las diferencias deben conciliarse identificando las notas de crédito pendientes, registrar los ajustes correspondientes y documentar en cédula de diferencias.",
+      "Incorrecto: Reenviar confirmaciones no resuelve las diferencias reales.",
+      "Incorrecto: Las diferencias siempre deben investigarse; el cliente puede tener razón."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo4/3.jpg"
+  },
+  {
+    "id": "p_nivel4_4",
+    "orden": 4,
+    "pregunta": "4.- Tesorería y contabilidad comparten el mismo usuario del sistema. ¿Qué se implementa?",
+    "opciones": [
+      "Segregar roles, activar MFA, bitácoras y revisión trimestral",
+      "Cambiar la contraseña y ya",
+      "Dar 'usuario invitado' para todos",
+      "Llevar control en Excel fuera del ERP"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: La segregación de roles es un control clave de seguridad; debe complementarse con autenticación multifactor, bitácoras de acceso y revisiones periódicas.",
+      "Incorrecto: Cambiar la contraseña no resuelve la falta de segregación de funciones.",
+      "Incorrecto: El usuario invitado no segrega responsabilidades ni protege la integridad del sistema.",
+      "Incorrecto: El control en Excel fuera del ERP genera duplicidad y riesgo de manipulación."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo4/4.jpg"
+  },
+  {
+    "id": "p_nivel4_5",
+    "orden": 5,
+    "pregunta": "5.- Después del cierre, un cliente importante entra en concurso mercantil. ¿Qué se revela?",
+    "opciones": [
+      "Cambiar la fecha del cierre",
+      "Borrar al cliente del catálogo",
+      "Revelar hecho subsecuente tipo II y evaluar deterioro de cuentas por cobrar",
+      "No revelar nada"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Cambiar la fecha del cierre es una manipulación contable.",
+      "Incorrecto: Borrar al cliente no elimina la cuenta por cobrar ni la obligación de revelación.",
+      "Correcto: Un concurso mercantil posterior al cierre es un hecho subsecuente tipo II que debe revelarse en notas a los estados financieros, evaluando el deterioro de la cuenta por cobrar.",
+      "Incorrecto: No revelar hechos significativos posteriores al cierre viola las normas de información financiera."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo4/5.jpg"
+  },
+  {
+    "id": "p_nivel4_6",
+    "orden": 6,
+    "pregunta": "6.- Hay 10,000 pólizas, control débil y tolerancia baja al error. ¿Cómo se define la muestra?",
+    "opciones": [
+      "Pedir al auditor que elija menos",
+      "Elegir las que 'se ven bien'",
+      "Tomar 5 al azar",
+      "Aumentar la muestra, estratificar por riesgo y monto"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: El tamaño de la muestra lo determina el riesgo de auditoría, no la preferencia del cliente.",
+      "Incorrecto: Seleccionar las que 'se ven bien' introduce sesgo y no es un procedimiento válido.",
+      "Incorrecto: 5 pólizas son insuficientes para un universo de 10,000 con control débil.",
+      "Correcto: Con control débil y baja tolerancia al error, se aumenta la muestra y se estratifica por nivel de riesgo y monto para maximizar la cobertura."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo4/6.jpg"
+  },
+  {
+    "id": "p_nivel4_7",
+    "orden": 7,
+    "pregunta": "7.- No existe una matriz de riesgos formal en la empresa. ¿Qué se construye?",
+    "opciones": [
+      "Guardar todo en la cabeza de Don Rogelio",
+      "Declarar 'tolerancia infinita al riesgo'",
+      "Hacer un mapa bonito sin responsables",
+      "Construir matriz con riesgo inherente, de control, respuesta y dueño del control"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: El conocimiento informal en la mente de una persona no es un control documentado.",
+      "Incorrecto: La tolerancia infinita al riesgo no es una estrategia; es la ausencia de gestión.",
+      "Incorrecto: Una matriz sin responsables asignados no puede implementarse ni monitorearse.",
+      "Correcto: La matriz de riesgos debe incluir riesgo inherente, impacto de controles existentes, riesgo residual, respuesta definida y dueño del control responsable."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo4/7.jpg"
+  },
+  {
+    "id": "p_nivel4_8",
+    "orden": 8,
+    "pregunta": "8.- El auditor detecta un hallazgo material en inventarios. ¿Qué procede?",
+    "opciones": [
+      "Registrar el ajuste, recalcular indicadores y emitir estados revisados",
+      "Dejarlo en 'papeleta del auditor' sin registrar",
+      "Pasarlo a partidas no recurrentes",
+      "Esperar al año que entra"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: Un hallazgo material debe registrarse mediante ajuste contable, lo que requiere recalcular los indicadores financieros y emitir estados financieros revisados.",
+      "Incorrecto: Un hallazgo material no puede quedarse sin registro contable.",
+      "Incorrecto: Clasificar errores como 'no recurrentes' no elimina su impacto material.",
+      "Incorrecto: Los hallazgos materiales del período actual no pueden diferirse al siguiente ejercicio."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo4/8.jpg"
+  }
+]

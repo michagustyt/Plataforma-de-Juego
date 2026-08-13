@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selección de Nivel - Crónicas Fiscales</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/dark-mode.css">
+<script src="js/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+    /* === VARIABLES CSS (TEMA CÁLIDO) === */
+    :root {
+        --primary-color: #e76f51; /* Naranja Terracota */
+        --secondary-color: #f4a261; /* Amarillo Arena */
+        --accent-color: #e9c46a; /* Amarillo Dorado */
+        --text-dark: #4f3422; /* Café Oscuro */
+        --text-light: #fefefe; /* Blanco cálido */
+        --bg-body-start: #fff1e6; /* Crema */
+        --bg-body-end: #fde4e1; /* Rosa pálido */
+        --bg-card: rgba(255, 250, 245, 0.92); /* Crema translúcido */
+        --shadow-light: 0 8px 20px rgba(80, 50, 30, 0.1);
+        --shadow-heavy: 0 15px 35px rgba(80, 50, 30, 0.2);
+    }
+
+    /* === ESTILOS GLOBALES === */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        min-height: 100vh;
+        background-image: linear-gradient(to top, var(--bg-body-start), var(--bg-body-end));
+        background-attachment: fixed;
+        font-family: 'Nunito', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        color: var(--text-dark);
+    }
+    
+    .oculto { display: none !important; }
+
+    /* === CONTENEDOR PRINCIPAL === */
+    .container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        background-color: var(--bg-card);
+        border-radius: 35px;
+        box-shadow: var(--shadow-heavy);
+        padding: 40px 50px;
+        border: 4px solid var(--primary-color);
+        animation: fadeInScale 1s ease-out;
+    }
+
+    h1 {
+        font-family: 'Fredoka One', cursive;
+        font-size: 2.8rem;
+        color: var(--primary-color);
+        text-shadow: 2px 2px 0px var(--text-light);
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .welcome-message {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+
+    /* === GRID DE NIVELES === */
+    .level-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 25px;
+        justify-content: center;
+    }
+    
+    .level-card {
+        background: var(--text-light);
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: var(--shadow-light);
+        border: 3px solid var(--accent-color);
+        transition: all 0.3s ease;
+    }
+    
+    .level-card.unlocked {
+        cursor: pointer;
+    }
+    
+    .level-card.unlocked:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: var(--shadow-heavy);
+        border-color: var(--primary-color);
+    }
+    
+    .level-card.locked {
+        background: #f0e9e4;
+        opacity: 0.7;
+        cursor: not-allowed;
+        border-color: #d1c5b9;
+    }
+    
+    .level-icon {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+    
+    .level-card.locked .level-icon {
+        color: #998c80;
+    }
+    
+    .level-card.unlocked .level-icon {
+        color: var(--secondary-color);
+    }
+    
+    .level-card h3 {
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.3rem;
+        color: var(--text-dark);
+        margin-bottom: 5px;
+    }
+    
+    .level-card p {
+        font-size: 0.9rem;
+        font-weight: 500;
+        min-height: 40px; /* Para alinear tarjetas */
+    }
+
+    /* === BOTÓN DE VOLVER === */
+    .back-button {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        background-color: var(--accent-color);
+        color: #4f3422 !important; /* Siempre oscuro para contrastar con el fondo amarillo */
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+    }
+    .back-button:hover {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        transform: translateY(-2px);
+    }
+    
+    /* === BOTÓN DE MÚSICA (NUEVO) === */
+    .music-button {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        background-color: var(--secondary-color);
+        color: #4f3422 !important; /* Siempre oscuro para contrastar con el fondo naranja */
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 10;
+    }
+    .music-button:hover {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        transform: translateY(-2px);
+    }
+
+
+
+</style>
+</head>
+<body>
+<button id="configBtn" class="config-btn">⚙️ Configuración</button>
+
+<!-- CONTENEDOR PRINCIPAL DE NIVELES -->
+<div class="container" id="levelContainer">
+    <a href="dashboard_alumno.html" class="back-button">
+        Volver
+    </a>
+    
+    <!-- Botón de Música (NUEVO) -->
+    <button id="musicButton" class="music-button">
+        Música
+    </button>
+    
+    <h1>Selección de Nivel</h1>
+    <p class="welcome-message" id="welcomeText">Cargando jugador...</p>
+    
+    <div class="level-grid" id="levelGrid">
+        <!-- Los niveles se generarán aquíí con JavaScript -->
+    </div>
+</div>
+
+<!-- Elemento de Audio (NUEVO) -->
+<audio id="backgroundMusic" loop>
+    <source src="./assets/Audio.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+</audio>
+
+<!-- Scripts (Validación de Sesión desde DB) -->
+<script>
+    // ============================================================
+    // introduccion.html — Integrado con BD local
+    // ============================================================
+    const API_BASE = './api';
+
+    let nombreJugador = "Jugador";
+    let nivelCompletado = 0;
+
+    // --- Definición de Niveles ---
+    const allLevels = [
+        { nombre: "La Amenaza del Fisco", archivo: "html/capitulo1.html" },
+        { nombre: "La travesía del IVA perdido", archivo: "html/capitulo2.html" },
+        { nombre: "El cierre que hace llorar", archivo: "html/capitulo3.html" },
+        { nombre: "Auditoría y control interno en la empresa", archivo: "html/capitulo4.html" },
+        { nombre: "Costeo, Presupuesto y Decisiones duras.", archivo: "html/capitulo5.html" },
+        { nombre: "NIIF / IFRS, Consolidación e instrumentos financieros.", archivo: "html/capitulo6.html" },
+        { nombre: "Automatización, datos y cumplimiento digital.", archivo: "html/capitulo7.html" },
+        { nombre: "Matemáticas del Riesgo", archivo: "html/capitulo8.html" },
+        { nombre: "El Gódin Legendario", archivo: "html/capitulo9.html" }
+    ];
+
+    // --- Elementos del DOM ---
+    const levelGridEl = document.getElementById("levelGrid");
+    const welcomeTextEl = document.getElementById("welcomeText");
+    
+    // Elementos de Música (NUEVO)
+    const musicButtonEl = document.getElementById("musicButton");
+    const backgroundMusicEl = document.getElementById("backgroundMusic");
+    let isMusicPlaying = false;
+
+    // --- Lógica de Música ---
+    function playMusic() {
+        if (!isMusicPlaying) {
+            // Intentar reproducir. El navegador puede bloquear esto.
+            backgroundMusicEl.play().then(() => {
+                isMusicPlaying = true;
+                musicButtonEl.innerHTML = '<span>🔇</span> Silencio';
+            }).catch(e => console.log("El navegador bloqueó el autoplay de la música."));
+        }
+    }
+
+    musicButtonEl.onclick = () => {
+        if (isMusicPlaying) {
+            backgroundMusicEl.pause();
+            isMusicPlaying = false;
+            musicButtonEl.innerHTML = 'Música';
+        } else {
+            backgroundMusicEl.play();
+            isMusicPlaying = true;
+            musicButtonEl.innerHTML = '<span>🔇</span> Silencio';
+        }
+    };
+
+    // --- Función Principal ---
+    async function inicializarHub() {
+        try {
+            // 1. Verificar sesión activa
+            const authRes = await fetch(`${API_BASE}/login.php`);
+            const authData = await authRes.json();
+            
+            if (!authData.autenticado) {
+                window.location.href = 'login.html';
+                return;
+            }
+            nombreJugador = authData.usuario.nombre;
+
+            // 2. Buscar progreso del jugador en la BD
+            const res = await fetch(`${API_BASE}/get_jugador.php`);
+            const jugador = await res.json();
+
+            if (jugador && jugador.nivel !== undefined) {
+                nivelCompletado = jugador.nivel;
+            }
+
+            generarGridNiveles();
+            playMusic();
+        } catch (error) {
+            console.error("Error al inicializar hub:", error);
+            Swal.fire('Error', 'Hubo un problema al conectar con el servidor', 'error');
+        }
+    }
+
+    // --- Función para Generar el Grid de Niveles ---
+    function generarGridNiveles() {
+        welcomeTextEl.textContent = `¡Hola, ${nombreJugador}! Elige tu próximo desafío.`;
+        levelGridEl.innerHTML = '';
+
+        allLevels.forEach((level, index) => {
+            const levelNum = index + 1;
+            const isUnlocked = levelNum <= (nivelCompletado + 1);
+            const card = document.createElement('div');
+            card.className = `level-card ${isUnlocked ? 'unlocked' : 'locked'}`;
+            card.innerHTML = `
+                <div class="level-icon">${isUnlocked ? '➡️' : '🔒'}</div>
+                <h3>Nivel ${levelNum}</h3>
+                <p>${level.nombre}</p>
+            `;
+            if (isUnlocked) {
+                card.onclick = () => irANivel(level.archivo, level.nombre);
+            }
+            levelGridEl.appendChild(card);
+        });
+    }
+
+    // --- Navegación ---
+    window.irANivel = (archivo, nombre) => {
+        if (archivo === "#") {
+            Swal.fire({ title: "¡Lo siento 😟!", text: `El ${nombre} estará disponible próximamente.`, icon: "warning" });
+        } else {
+            window.location.href = archivo;
+        }
+    };
+
+    // Iniciar la aplicación
+    inicializarHub();
+
+</script>
+</body>
+</html>
+

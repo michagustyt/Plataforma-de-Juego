@@ -1,0 +1,142 @@
+[
+  {
+    "id": "p_nivel8_1",
+    "orden": 1,
+    "pregunta": "1.- ¿Cómo valúas una opción europea usando el modelo Black-Scholes?",
+    "opciones": [
+      "Black-Scholes: N(d1)S − N(d2)Ke^(−rT)",
+      "Precio con volado 'cara o cruz'",
+      "Valor intrínseco = 0",
+      "Intuición de mercado"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: La fórmula de Black-Scholes para una opción de compra (call) europea es C = N(d1)·S − N(d2)·K·e^(−rT), donde N() es la función de distribución normal acumulada, S el precio del subyacente, K el precio de ejercicio, r la tasa libre de riesgo y T el tiempo al vencimiento.",
+      "Incorrecto: El azar no es un modelo de valuación financiera.",
+      "Incorrecto: El valor intrínseco puede ser cero pero la prima de tiempo agrega valor a la opción.",
+      "Incorrecto: La intuición no reemplaza los modelos cuantitativos de valuación de derivados."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo8/1.png"
+  },
+  {
+    "id": "p_nivel8_2",
+    "orden": 2,
+    "pregunta": "2.- Calcula el VaR al 99% para un portafolio con desviación estándar de 1 millón.",
+    "opciones": [
+      "1M porque es la desviación",
+      "Preguntar al brujo de la bolsa",
+      "10M 'para no fallar'",
+      "VaR = 2.33σ ≈ 2.33M"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: La desviación estándar no es el VaR; el VaR ajusta por el nivel de confianza.",
+      "Incorrecto: Las decisiones de riesgo requieren metodología cuantitativa, no consultas informales.",
+      "Incorrecto: $10M es una sobreestimación arbitraria sin base estadística.",
+      "Correcto: Para un nivel de confianza del 99%, el factor Z es 2.33. VaR = 2.33 × $1M = $2.33M, representando la pérdida máxima esperada con 99% de confianza."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo8/2.png"
+  },
+  {
+    "id": "p_nivel8_3",
+    "orden": 3,
+    "pregunta": "3.- Tienes un flujo futuro en USD que quieres cubrir. ¿Qué estrategia de hedging implementas?",
+    "opciones": [
+      "Pedirle al banco que no suba el peso",
+      "No hacer nada",
+      "Vender futuros de USD para cubrir flujo",
+      "Comprar futuros de USD"
+    ],
+    "respuesta": 2,
+    "feedback": [
+      "Incorrecto: Los bancos no controlan el tipo de cambio; el hedging lo hace el empresa.",
+      "Incorrecto: No cubrir un flujo en moneda extranjera expone a la empresa a riesgo cambiario.",
+      "Correcto: Si tienes un ingreso futuro en USD (posición larga en USD), para cubrir el riesgo cambiario vendes futuros de USD, fijando el tipo de cambio de conversión.",
+      "Incorrecto: Comprar futuros de USD aumentaría la exposición, no la cubriría."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo8/3.png"
+  },
+  {
+    "id": "p_nivel8_4",
+    "orden": 4,
+    "pregunta": "4.- Calcula el retorno esperado usando CAPM: Rf=4%, β=1.2, Rm=10%",
+    "opciones": [
+      "E(R) = Rf + β(Rm−Rf) = 11.2%",
+      "Multiplicar todo por beta",
+      "Promediar 4% y 10%",
+      "Media geométrica aleatoria"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: E(R) = Rf + β × (Rm − Rf) = 4% + 1.2 × (10% − 4%) = 4% + 1.2 × 6% = 4% + 7.2% = 11.2%.",
+      "Incorrecto: Multiplicar todo por beta no aplica la fórmula CAPM correctamente.",
+      "Incorrecto: El promedio de Rf y Rm ignora la prima de riesgo y el beta.",
+      "Incorrecto: La media geométrica aleatoria no es la fórmula CAPM."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo8/4.png"
+  },
+  {
+    "id": "p_nivel8_5",
+    "orden": 5,
+    "pregunta": "5.- ¿Cómo evalúas el riesgo de un proyecto usando simulación Montecarlo?",
+    "opciones": [
+      "Modelar 10k escenarios, obtener distribución de NPV",
+      "Tomar media de 2 casos",
+      "Preguntar a la suerte",
+      "Usar solo escenario optimista"
+    ],
+    "respuesta": 0,
+    "feedback": [
+      "Correcto: La simulación Montecarlo modela miles de escenarios (típicamente 10,000+) variando las variables de entrada según sus distribuciones de probabilidad, generando una distribución completa del VPN para analizar riesgo.",
+      "Incorrecto: La media de 2 casos no captura la distribución real del riesgo.",
+      "Incorrecto: El azar no es una metodología de evaluación de proyectos.",
+      "Incorrecto: El escenario optimista sesga la evaluación hacia resultados irreales."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo8/5.png"
+  },
+  {
+    "id": "p_nivel8_6",
+    "orden": 6,
+    "pregunta": "6.- ¿Cómo te proteges contra el riesgo de default de un bono corporativo?",
+    "opciones": [
+      "Rezar por liquidez",
+      "Dar crédito ilimitado",
+      "Mover deuda a 'otros activos'",
+      "Comprar CDS como seguro"
+    ],
+    "respuesta": 3,
+    "feedback": [
+      "Incorrecto: La oración no es un instrumento de gestión de riesgo crediticio.",
+      "Incorrecto: Dar crédito ilimitado aumenta la exposición, no la reduce.",
+      "Incorrecto: Reclasificar la deuda no elimina el riesgo de default.",
+      "Correcto: Un Credit Default Swap (CDS) es un derivado que transfiere el riesgo de crédito al vendedor del CDS, funcionando como un seguro contra el default del emisor del bono."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo8/6.png"
+  },
+  {
+    "id": "p_nivel8_7",
+    "orden": 7,
+    "pregunta": "7.- ¿Cómo construyes un portafolio óptimo considerando riesgo y retorno?",
+    "opciones": [
+      "Poner más al que te gusta",
+      "Frontera eficiente con covarianzas",
+      "Diversificar en pares",
+      "Uno de cada uno 'por no errar'"
+    ],
+    "respuesta": 1,
+    "feedback": [
+      "Incorrecto: La preferencia personal no optimiza la relación riesgo-retorno.",
+      "Correcto: La teoría moderna de portafolios de Markowitz construye la frontera eficiente usando las varianzas y covarianzas de los activos, identificando los portafolios que maximizan retorno para cada nivel de riesgo.",
+      "Incorrecto: Diversificar en pares no garantiza eficiencia; la correlación entre activos es clave.",
+      "Incorrecto: Invertir proporcionalmente en todo no optimiza la relación riesgo-retorno."
+    ],
+    "activa": true,
+    "fondo": "../assets/capitulo8/7.png"
+  }
+]
